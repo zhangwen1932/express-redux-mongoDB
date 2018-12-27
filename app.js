@@ -1,6 +1,6 @@
 var express = require('express');
 var http = require('http');
-const cors = require('cors');
+var cors = require('cors');
 var app = express();
 app.use(cors());
 //all enviroments
@@ -20,7 +20,6 @@ app.get('/getUserInfo', function(req, res, next){
     }
   })
 })
-
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
