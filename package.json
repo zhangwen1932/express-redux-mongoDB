@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --color --procsee --open"
+    "start": "webpack-dev-server --color --procsee --open",
+    "start-server": "node ./server/index.js"
   },
   "keywords": [],
   "author": "",
