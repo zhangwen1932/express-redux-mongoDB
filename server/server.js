@@ -1,7 +1,13 @@
-const express = require('express');
+import Express from 'express';
+import config from '../config/config';
 
-const app = express();
+const app = new Express();
+const { port } = config;
 
-app.get('/', (req, res) => res.send('Hello World!'));
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
+app.listen(port, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(`===>open http://${config.host}:${config.port} in a browser to view the app`);
+  }
+});
