@@ -10,7 +10,9 @@ npm run start
 .
 ├── README.md                   
 ├── app                     // 前端源码文件夹
-│    └──index.js            // 入口文件 
+│    ├──index.js            // 入口文件 
+│    ├──container
+│    └──reducers
 ├── package.json
 ├── record                  // 存放一些记录文件的文件夹
 ├── schemas                 // mongoose schema文件夹

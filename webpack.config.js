@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, 'app/index.js'),
+  entry: path.join(__dirname, 'frontend/app/index.js'),
   devServer: {
     port: 2300,
     historyApiFallback: true,
@@ -23,7 +23,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: [
-          path.join(__dirname, 'app'),
+          path.join(__dirname, 'frontend/app'),
         ],
         loader: 'babel-loader',
       }, {
