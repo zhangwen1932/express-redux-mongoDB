@@ -1,12 +1,7 @@
 const express = require('express');
-const path = require('path');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/api/v1/user', (req, rep) => {
-  rep.send('hello');
-});
-
-app.listen(2300, () => console.log('Example app listening on port 2300!'));
+app.listen(3000, () => console.log('Example app listening on port 3000!'));
