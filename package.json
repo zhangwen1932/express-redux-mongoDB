@@ -17,7 +17,8 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "redux-saga": "^0.16.2"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -47,6 +48,9 @@
     "less-loader": "^4.1.0",
     "node-sass": "^4.10.0",
     "nodemon": "^1.18.9",
+    "open-browser-webpack-plugin": "0.0.5",
+    "progress-bar-webpack-plugin": "^1.11.0",
+    "react-hot-loader": "^4.6.3",
     "redux-devtools": "^3.5.0",
     "sass": "^1.15.1",
     "sass-loader": "^7.1.0",

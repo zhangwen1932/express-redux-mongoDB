@@ -1,7 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const config = require('./config/config');
 
 module.exports = {
   mode: 'development',
@@ -13,9 +17,13 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new ProgressBarPlugin(),
     new CleanWebpackPlugin(['public']),
     new HtmlWebpackPlugin({
       title: 'test',
+    }),
+    new OpenBrowserPlugin({
+      url: `http://${config.host}:${config.port}`,
     }),
   ],
   module: {
