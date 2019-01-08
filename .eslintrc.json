@@ -46,6 +46,12 @@
     "react/jsx-filename-extension": 0,
     "no-extend-native": 0,
     "no-return-assign": 0,
-    "no-mixed-operators": 0
+    "no-mixed-operators": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
   }
 }

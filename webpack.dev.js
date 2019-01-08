@@ -5,9 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.join(__dirname, 'frontend/app/index.js'),
+  entry: path.join(__dirname, 'app/index.js'),
   devServer: {
-    port: 2300,
+    port: 2700,
     historyApiFallback: true,
     hot: true,
   },
@@ -23,7 +23,7 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: [
-          path.join(__dirname, 'frontend/app'),
+          path.join(__dirname, 'app'),
         ],
         loader: 'babel-loader',
       }, {
@@ -67,7 +67,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.join(__dirname, '..', 'public'),
+    path: path.join(__dirname, 'public'),
   },
   resolve: {
     extensions: ['.js', '.jsx'],

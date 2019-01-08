@@ -2,12 +2,9 @@
   "name": "express_demo",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "watch-client": "cross-env NODE_ENV=development node ./server/index.js",
-    "start-dev-api": "nodemon --watch server/api server/api/index.js",
-    "start": "npm run watch-client & npm run start-dev-api",
-    "build": ""
+    "start": "nodemon --watch server/ server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +12,7 @@
   "dependencies": {
     "antd": "^3.11.0",
     "express": "^4.16.4",
+    "http-proxy": "^1.17.0",
     "postcss-loader": "^3.0.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -32,6 +30,7 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-import": "^1.11.0",
     "clean-webpack-plugin": "^1.0.0",
+    "concurrently": "^4.1.0",
     "cross-env": "^5.2.0",
     "css-loader": "^1.0.1",
     "css-module": "^1.1.4",
@@ -54,6 +53,7 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.26.1",
     "webpack-cli": "^3.1.2",
+    "webpack-dev-middleware": "^3.5.0",
     "webpack-hot-middleware": "^2.24.3"
   }
 }
