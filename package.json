@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch server/ server/index.js"
+    "watch-client": "cross-env NODE_ENV=development node ./server/index.js",
+    "start-dev-api": "nodemon --watch server/api server/api/index.js",
+    "start": "concurrently \"npm:watch-client\" \"npm:start-dev-api\""
   },
   "keywords": [],
   "author": "",
@@ -12,8 +14,14 @@
   "dependencies": {
     "antd": "^3.11.0",
     "axios": "^0.18.0",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cookies": "^0.7.3",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "http-proxy": "^1.17.0",
+    "mongoose": "^5.4.2",
     "postcss-loader": "^3.0.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
