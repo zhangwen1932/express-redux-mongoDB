@@ -13,7 +13,7 @@ export const actions = {
   send_test: (testData) => {
     return {
       type: actionsTypes.SEND_INFO,
-      test: testData,
+      testData,
     };
   },
 };
@@ -21,9 +21,10 @@ export const actions = {
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case actionsTypes.SEND_INFO:
+      console.log('action', action.testData);
       return {
         ...state,
-        test: action.test,
+        test: action.testData,
       };
     default:
       return state;

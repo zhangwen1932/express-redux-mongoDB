@@ -4,15 +4,15 @@ import { post } from '../fetch/fetch';
 import { actionsTypes as TestActionTypes } from '../reducers';
 
 // eslint-disable-next-line consistent-return
-export function* sendInfo(testdata) {
-  console.log('我是saga里面的TestActionTypes,应该按钮触发后才显示', TestActionTypes.SEND_INFO);
-  yield call(post, '/test', { testdata });
+export function* sendInfo(testData) {
+  console.log('testdata sendInfo', testData);
+  yield call(post, '/test', { testData });
 }
 
 export function* sendInfoFlow() {
   while (true) {
     const request = yield take(TestActionTypes.SEND_INFO);
-    console.log('request.data', request.data);
-    yield call(sendInfo, request.data);
+    console.log('request.test', request.testData);
+    yield call(sendInfo, request.testData);
   }
 }

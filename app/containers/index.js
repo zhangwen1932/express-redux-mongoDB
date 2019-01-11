@@ -12,7 +12,7 @@ class IndexApp extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
         // eslint-disable-next-line react/destructuring-assignment
-        this.props.sendInfo(values);
+        this.props.sendInfo(values.testdata);
       }
     });
   }
@@ -25,7 +25,7 @@ class IndexApp extends Component {
     return (
       <Form layout="inline" onSubmit={this.handleSubmit} style={{ margin: 15 }}>
         <Form.Item>
-          {getFieldDecorator('text', {
+          {getFieldDecorator('testdata', {
             rules: [{ required: true, message: '请输入一段文字' }],
           })(
             <Input placeholder="Test text" />,
