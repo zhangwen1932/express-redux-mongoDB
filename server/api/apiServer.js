@@ -29,6 +29,8 @@ app.use(session({
   cookie: { maxAge: 60 * 1000 * 30 }, // 过期时间
 }));
 
+app.use('/test', require('./test'));
+
 mongoose.Promise = require('bluebird');
 
 mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/test`, function (err) {
