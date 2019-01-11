@@ -1,15 +1,15 @@
 module.exports = {
   host: process.env.HOST || '127.0.0.1',
-  port: process.env.PORT || (process.env.NODE_ENV === 'production' ? 8080 : 2700),
+  port: process.env.PORT || (process.env.NODE_ENV === 'production' ? 8080 : 2900),
   apiHost: process.env.APIHOST || '127.0.0.1',
-  apiPort: process.env.APIPORT || '2700',
+  apiPort: process.env.APIPORT || '2800',
   dbHost: 'localhost',
   dbPort: '27017',
   app: {
-    title: 'blog',
+    title: 'test',
     description: 'react-express-mongo demo',
     head: {
-      titleTemplate: 'blog',
+      titleTemplate: 'test',
       meta: [
         {
           name: 'description',

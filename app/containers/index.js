@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { actions } from '../reducers';
 
-const { send_test: sendTest } = actions;
-
 class IndexApp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +12,7 @@ class IndexApp extends Component {
       if (!err) {
         console.log('Received values of form: ', values);
         // eslint-disable-next-line react/destructuring-assignment
-        this.props.send_test(values);
+        this.props.sendInfo(values);
       }
     });
   }
@@ -22,13 +20,15 @@ class IndexApp extends Component {
   render() {
     // eslint-disable-next-line react/destructuring-assignment
     const { getFieldDecorator } = this.props.form;
+    const { test } = this.props;
+    console.log('test', test);
     return (
       <Form layout="inline" onSubmit={this.handleSubmit} style={{ margin: 15 }}>
         <Form.Item>
           {getFieldDecorator('text', {
             rules: [{ required: true, message: '请输入一段文字' }],
           })(
-            <Input placeholder="Username" />,
+            <Input placeholder="Test text" />,
           )}
         </Form.Item>
         <Form.Item>
@@ -39,16 +39,18 @@ class IndexApp extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+    test: state.globalState.test,
+  };
+}
 
 function mapDispatchToProps(dispatch) {
   return {
-    send_test: bindActionCreators(sendTest, dispatch),
+    sendInfo: bindActionCreators(actions.send_test, dispatch),
   };
 }
 export default connect(
+  mapStateToProps,
   mapDispatchToProps,
 )(Form.create()(IndexApp));

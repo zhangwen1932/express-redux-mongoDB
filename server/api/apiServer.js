@@ -29,7 +29,8 @@ app.use(session({
   cookie: { maxAge: 60 * 1000 * 30 }, // 过期时间
 }));
 
-app.use('/test', require('./test'));
+// 测试接口是否有问题
+app.use('/', require('./test'));
 
 mongoose.Promise = require('bluebird');
 

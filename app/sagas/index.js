@@ -1,7 +1,6 @@
 import { fork } from 'redux-saga/effects';
-import { sendInfo } from './testSaga';
-
+import { sendInfoFlow } from './testSaga';
 
 export default function* rootSaga() {
-  yield fork(sendInfo);
+  yield fork(sendInfoFlow);
 }

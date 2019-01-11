@@ -5,7 +5,7 @@
 import axios from 'axios';
 
 const config = {
-  baseURL: '/',
+  baseURL: '/api',
   transformRequest: [
     function (data) {
       let ret = '';

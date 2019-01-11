@@ -10,11 +10,6 @@ const config = require('./config/config');
 module.exports = {
   mode: 'development',
   entry: path.join(__dirname, 'app/index.js'),
-  devServer: {
-    port: 2700,
-    historyApiFallback: true,
-    hot: true,
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ProgressBarPlugin(),

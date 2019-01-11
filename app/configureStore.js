@@ -6,6 +6,7 @@ import rootSaga from './sagas';
 
 const win = window;
 const sagaMiddleware = createSagaMiddleware();
+
 const middlewares = [];
 
 let storeEnhancers;
