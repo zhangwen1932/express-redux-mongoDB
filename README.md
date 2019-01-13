@@ -1,4 +1,4 @@
-# express-server-demo
+# express-redux-mongoDB
 
 ## 启动
 ```shell

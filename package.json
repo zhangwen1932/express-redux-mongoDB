@@ -1,7 +1,7 @@
 {
   "name": "express_demo",
   "version": "1.0.0",
-  "description": "express+redux+mongoose",
+  "description": "express+redux+mongoDB",
   "main": "index.js",
   "scripts": {
     "watch-client": "cross-env NODE_ENV=development node ./server/index.js",
