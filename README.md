@@ -24,4 +24,3 @@ npm run start
 ├── static                  // 静态资源托管文件夹
 └── webpack.dev.js          // webpack配置文件
 ```
-
