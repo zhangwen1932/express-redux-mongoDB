@@ -5,14 +5,12 @@ import { actionsTypes as TestActionTypes } from '../reducers';
 
 // eslint-disable-next-line consistent-return
 export function* sendInfo(testData) {
-  console.log('testdata sendInfo', testData);
   yield call(post, '/test', { testData });
 }
 
 export function* sendInfoFlow() {
   while (true) {
     const request = yield take(TestActionTypes.SEND_INFO);
-    console.log('request.test', request.testData);
     yield call(sendInfo, request.testData);
   }
 }

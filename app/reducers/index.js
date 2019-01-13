@@ -21,7 +21,6 @@ export const actions = {
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case actionsTypes.SEND_INFO:
-      console.log('action', action.testData);
       return {
         ...state,
         test: action.testData,
