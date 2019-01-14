@@ -9,7 +9,7 @@
     "start": "npm run watch-client & npm run start-dev-api"
   },
   "keywords": [],
-  "author": "",
+  "author": "Wendy",
   "license": "ISC",
   "dependencies": {
     "antd": "^3.11.0",

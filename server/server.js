@@ -1,15 +1,13 @@
+/* eslint-disable global-require */
 import path from 'path';
 import Express from 'express';
-import Webpack from 'webpack';
 import httpProxy from 'http-proxy';
-import WebpackHotMiddleware from 'webpack-hot-middleware';
-import WebpackDevMiddleware from 'webpack-dev-middleware';
 import config from '../config/config';
-import webpackConfig from '../webpack.dev';
 
 
 const app = new Express();
-const port = config;
+// eslint-disable-next-line prefer-destructuring
+const port = config.port;
 
 app.use('/', Express.static(path.join(__dirname, '..', 'public')));
 
@@ -24,6 +22,11 @@ app.use('/api', (req, res) => {
 
 // 热更新
 if (process.env.NODE_ENV !== 'production') {
+  const Webpack = require('webpack');
+  const WebpackDevMiddleware = require('webpack-dev-middleware');
+  const WebpackHotMiddleware = require('webpack-hot-middleware');
+  const webpackConfig = require('../webpack.dev');
+
   const compiler = Webpack(webpackConfig);
 
   app.use(WebpackDevMiddleware(compiler, {
