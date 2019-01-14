@@ -19,8 +19,6 @@ class IndexApp extends Component {
   render() {
     // eslint-disable-next-line react/destructuring-assignment
     const { getFieldDecorator } = this.props.form;
-    const { test } = this.props;
-    console.log('test', test);
     return (
       <Form layout="inline" onSubmit={this.handleSubmit} style={{ margin: 15 }}>
         <Form.Item>
