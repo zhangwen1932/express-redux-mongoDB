@@ -16,7 +16,6 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 import config from '../../config/config';
 
-
 const port = config.apiPort;
 
 const app = new Express();
@@ -30,7 +29,7 @@ app.use(session({
 }));
 
 // 测试接口是否有问题
-app.use('/', require('./test'));
+app.use('/', require('./user'));
 
 mongoose.Promise = require('bluebird');
 
@@ -39,7 +38,7 @@ mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/test`, function (e
     console.log(err, '数据库连接失败');
     return;
   }
-  console.log('数据库连接成功');
+  console.log('数据库连接成功.');
 
   app.listen(port, function (err) {
     if (err) {
