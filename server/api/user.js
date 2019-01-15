@@ -1,8 +1,37 @@
 import Express from 'express';
 import User from '../../models/user';
-import { responseClient } from '../util';
+import { responseClient, md5 } from '../util';
 
 const router = Express.Router();
+router.post('/login', (req, res) => {
+  const { userName, password } = req.body;
+  if (!userName) {
+    responseClient(res, 400, 2, '用户名不可为空');
+    return;
+  }
+  if (!password) {
+    responseClient(res, 400, 2, '密码不可为空');
+  }
+  // 查找用户
+  User.findOne({
+    username: userName,
+    password: md5(password),
+  }).then((userInfo) => {
+    if (userInfo) {
+      // 登录成功
+      const data = {};
+      data.username = userInfo.username;
+      data.userType = userInfo.type;
+      data.userId = userInfo._id;
+      responseClient(res, 200, 0, '登录成功', data);
+      return;
+    }
+    responseClient(res, 400, 1, '用户名密码错误');
+  }).catch((err) => {
+    responseClient(res);
+    console.log('err', err);
+  });
+});
 
 router.post('/register', (req, res) => {
   const { userName, password, passwordRe } = req.body;
@@ -26,7 +55,7 @@ router.post('/register', (req, res) => {
       // 保存到数据库
       const user = new User({
         username: userName,
-        password,
+        password: md5(password),
         type: 'user',
       });
       user.save()

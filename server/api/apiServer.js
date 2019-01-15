@@ -29,7 +29,7 @@ app.use(session({
 }));
 
 // 测试接口是否有问题
-app.use('/', require('./main'));
+app.use('/', require('./user'));
 
 mongoose.Promise = require('bluebird');
 
