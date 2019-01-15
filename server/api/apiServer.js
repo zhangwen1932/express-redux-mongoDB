@@ -16,7 +16,6 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 import config from '../../config/config';
 
-
 const port = config.apiPort;
 
 const app = new Express();
@@ -39,7 +38,7 @@ mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/test`, function (e
     console.log(err, '数据库连接失败');
     return;
   }
-  console.log('数据库连接成功');
+  console.log('数据库连接成功.');
 
   app.listen(port, function (err) {
     if (err) {
