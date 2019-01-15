@@ -6,7 +6,6 @@ const router = Express.Router();
 
 router.post('/test', (req, res) => {
   const { testData } = req.body;
-  console.log('输入的req是', req.body);
   Test.findOne({
     testData,
   }).then((result) => {

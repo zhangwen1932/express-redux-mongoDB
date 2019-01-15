@@ -6,7 +6,6 @@ const router = Express.Router();
 
 router.post('/register', (req, res) => {
   const { userName, password, passwordRe } = req.body;
-  console.log('输入的req为', req.body);
   if (!userName) {
     responseClient(res, 400, 2, '用户名不可为空');
     return;
