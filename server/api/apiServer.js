@@ -30,6 +30,8 @@ app.use(session({
 
 // 测试接口是否有问题
 app.use('/', require('./user'));
+// 管理页面路由
+app.use('/admin', require('./admin'));
 
 mongoose.Promise = require('bluebird');
 

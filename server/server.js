@@ -2,14 +2,15 @@
 import path from 'path';
 import Express from 'express';
 import httpProxy from 'http-proxy';
+import connectHistoryApiFallback from 'connect-history-api-fallback';
 import config from '../config/config';
-
 
 const app = new Express();
 // eslint-disable-next-line prefer-destructuring
 const port = config.port;
 
 app.use('/', Express.static(path.join(__dirname, '..', 'public')));
+app.use('/', connectHistoryApiFallback());
 
 const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
 const proxy = httpProxy.createProxyServer({
