@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 import Admin from './admin/Admin';
 import Front from './front/Front';
+import NotFound from './notFound/NotFound';
+import './style.css';
 
 class IndexApp extends Component {
   render() {
@@ -14,6 +16,7 @@ class IndexApp extends Component {
         <div>
           <Switch>
             <Route path="/admin" component={Admin} />
+            <Route path="/404" component={NotFound} />
             <Route component={Front} />
           </Switch>
         </div>

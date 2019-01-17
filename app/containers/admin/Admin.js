@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Login from './components/login/Login';
 
 class Admin extends Component {
   render() {
     return (
-      <h1>Admin Page</h1>
+      <Login />
     );
   }
 }
