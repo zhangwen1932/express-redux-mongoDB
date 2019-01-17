@@ -5,10 +5,11 @@ import {
 import './login.scss';
 
 
-class NormalLoginForm extends Component {
+class LoginForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    const { form } = this.props;
+    form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
       }
@@ -16,7 +17,8 @@ class NormalLoginForm extends Component {
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const { form } = this.props;
+    const { getFieldDecorator } = form;
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item>
@@ -49,6 +51,6 @@ class NormalLoginForm extends Component {
   }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
+const WrappedLoginForm = Form.create({ name: 'normal_login' })(LoginForm);
 
-export default WrappedNormalLoginForm;
+export default WrappedLoginForm;
