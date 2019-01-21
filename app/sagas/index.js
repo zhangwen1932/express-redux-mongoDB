@@ -1,6 +1,6 @@
 import { fork } from 'redux-saga/effects';
-import { sendInfoFlow } from './testSaga';
+import { loginFlow } from './adminManagerSaga';
 
 export default function* rootSaga() {
-  yield fork(sendInfoFlow);
+  yield fork(loginFlow);
 }

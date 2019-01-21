@@ -4,8 +4,9 @@ import { responseClient, md5 } from '../util';
 
 const router = Express.Router();
 router.post('/login', (req, res) => {
-  const { userName, password } = req.body;
-  if (!userName) {
+  const { username, password } = req.body;
+  console.log('发送的req为', req.body);
+  if (!username) {
     responseClient(res, 400, 2, '用户名不可为空');
     return;
   }
@@ -14,7 +15,7 @@ router.post('/login', (req, res) => {
   }
   // 查找用户
   User.findOne({
-    username: userName,
+    username,
     password: md5(password),
   }).then((userInfo) => {
     if (userInfo) {

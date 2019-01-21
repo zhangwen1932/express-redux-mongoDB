@@ -1,30 +1,26 @@
 import { combineReducers } from 'redux';
 
 const initialState = {
-  test: {},
+  userInfo: {},
 };
 
 export const actionsTypes = {
-  SEND_INFO: 'SEND_INFO',
+  LOGIN: 'LOGIN',
 };
 
 export const actions = {
   // eslint-disable-next-line arrow-body-style
-  send_test: (testData) => {
+  handleLogin: (username, password) => {
     return {
-      type: actionsTypes.SEND_INFO,
-      testData,
+      type: actionsTypes.LOGIN,
+      username,
+      password,
     };
   },
 };
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case actionsTypes.SEND_INFO:
-      return {
-        ...state,
-        test: action.testData,
-      };
     default:
       return state;
   }

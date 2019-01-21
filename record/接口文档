@@ -1,0 +1,2 @@
+登录: '/api/login'
+注册: '/api/register'
