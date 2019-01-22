@@ -5,16 +5,15 @@ import {
   Switch,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import Admin from './admin/Admin';
 import Front from './front/Front';
 import NotFound from './notFound/NotFound';
 import './style.css';
 
+
 class IndexApp extends Component {
   render() {
-    const { notification, isFetching } = this.props;
-    console.log('notification', notification);
+    const { isFetching } = this.props;
     console.log('isFetching', isFetching);
     return (
       <Router>
@@ -33,7 +32,6 @@ class IndexApp extends Component {
 function mapStateToProps(state) {
   return {
     isFetching: state.globalState.isFetching,
-    notification: state.globalState.msg,
   };
 }
 

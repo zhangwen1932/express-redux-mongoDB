@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 const initialState = {
-  isFetching: true,
+  isFetching: false,
   msg: {
     type: 1, // 1失败,2成功
     content: '',
@@ -13,6 +13,7 @@ export const actionsTypes = {
   FETCH_START: 'FETCH_START',
   FETCH_END: 'FETCH_END',
   LOGIN: 'LOGIN',
+  RESPONSE_USER_INFO: 'RESPONSE_USER_INFO',
   SET_MESSAGE: 'SET_MESSAGE',
 };
 
@@ -42,6 +43,11 @@ export function reducer(state = initialState, action) {
           type: action.msgType,
           content: action.msgContent,
         },
+      };
+    case actionsTypes.RESPONSE_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.data,
       };
     default:
       return state;

@@ -24,7 +24,7 @@ app.use(session({
   secret: 'express_react_cookie',
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60 * 1000 * 30 }, // 过期时间
+  cookie: { maxAge: 60 * 1000 }, // 过期时间 单位毫秒
 }));
 
 // 测试接口是否有问题

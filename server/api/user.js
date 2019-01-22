@@ -5,7 +5,6 @@ import { responseClient, md5 } from '../util';
 const router = Express.Router();
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
-  console.log('发送的req为', req.body);
   if (!username) {
     responseClient(res, 200, 2, '用户名不可为空');
     return;

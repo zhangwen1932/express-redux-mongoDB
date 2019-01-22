@@ -7,12 +7,13 @@ import { actions } from '../../reducers/index';
 class Admin extends Component {
   render() {
     const { login, userInfo } = this.props;
-    console.log(userInfo);
-    const test = 1;
+    console.log('userInfo', userInfo);
+    console.log(typeof (userInfo));
+    console.log(Object.keys(userInfo).length);
     return (
       <div>
         {
-          test ? <Login login={login} /> : <h1>hello world</h1>
+          userInfo.username ? <h1>管理界面</h1> : <Login login={login} />
         }
       </div>
     );
