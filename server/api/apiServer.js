@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-/* eslint-disable prefer-arrow-callback */
 /* eslint-disable func-names */
 /**
  * api请求server
@@ -35,14 +34,14 @@ app.use('/admin', require('./admin'));
 
 mongoose.Promise = require('bluebird');
 
-mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/test`, function (err) {
+mongoose.connect(`mongodb://${config.dbHost}:${config.dbPort}/test`, (err) => {
   if (err) {
     console.log(err, '数据库连接失败');
     return;
   }
   console.log('数据库连接成功.');
 
-  app.listen(port, function (err) {
+  app.listen(port, (err) => {
     if (err) {
       console.error('err:', err);
     } else {

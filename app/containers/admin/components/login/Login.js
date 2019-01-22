@@ -11,7 +11,6 @@ class LoginForm extends Component {
     const { form } = this.props;
     form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         const { login } = this.props;
         login(values.userName, values.password);
       }

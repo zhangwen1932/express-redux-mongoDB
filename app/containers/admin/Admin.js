@@ -6,9 +6,15 @@ import { actions } from '../../reducers/index';
 
 class Admin extends Component {
   render() {
-    const { login } = this.props;
+    const { login, userInfo } = this.props;
+    console.log(userInfo);
+    const test = 1;
     return (
-      <Login login={login} />
+      <div>
+        {
+          test ? <Login login={login} /> : <h1>hello world</h1>
+        }
+      </div>
     );
   }
 }

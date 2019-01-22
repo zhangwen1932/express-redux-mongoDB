@@ -7,11 +7,11 @@ router.post('/login', (req, res) => {
   const { username, password } = req.body;
   console.log('发送的req为', req.body);
   if (!username) {
-    responseClient(res, 400, 2, '用户名不可为空');
+    responseClient(res, 200, 2, '用户名不可为空');
     return;
   }
   if (!password) {
-    responseClient(res, 400, 2, '密码不可为空');
+    responseClient(res, 200, 2, '密码不可为空');
   }
   // 查找用户
   User.findOne({
@@ -27,7 +27,7 @@ router.post('/login', (req, res) => {
       responseClient(res, 200, 0, '登录成功', data);
       return;
     }
-    responseClient(res, 400, 1, '用户名密码错误');
+    responseClient(res, 200, 1, '用户名密码错误');
   }).catch((err) => {
     responseClient(res);
     console.log('err', err);

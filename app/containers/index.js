@@ -4,6 +4,8 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import Admin from './admin/Admin';
 import Front from './front/Front';
 import NotFound from './notFound/NotFound';
@@ -11,6 +13,9 @@ import './style.css';
 
 class IndexApp extends Component {
   render() {
+    const { notification, isFetching } = this.props;
+    console.log('notification', notification);
+    console.log('isFetching', isFetching);
     return (
       <Router>
         <div>
@@ -25,4 +30,13 @@ class IndexApp extends Component {
   }
 }
 
-export default IndexApp;
+function mapStateToProps(state) {
+  return {
+    isFetching: state.globalState.isFetching,
+    notification: state.globalState.msg,
+  };
+}
+
+export default connect(
+  mapStateToProps,
+)(IndexApp);
