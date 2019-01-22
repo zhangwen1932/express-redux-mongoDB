@@ -7,9 +7,6 @@ import { actions } from '../../reducers/index';
 class Admin extends Component {
   render() {
     const { login, userInfo } = this.props;
-    console.log('userInfo', userInfo);
-    console.log(typeof (userInfo));
-    console.log(Object.keys(userInfo).length);
     return (
       <div>
         {
