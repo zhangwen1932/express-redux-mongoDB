@@ -4,7 +4,6 @@ import {
 } from 'antd';
 import './login.scss';
 
-
 class LoginForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();

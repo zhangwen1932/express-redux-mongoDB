@@ -10,7 +10,7 @@ import { message } from 'antd';
 import Admin from './admin/Admin';
 import Front from './front/Front';
 import NotFound from './notFound/NotFound';
-import './style.css';
+import style from './style.css';
 
 
 class IndexApp extends Component {
@@ -24,7 +24,7 @@ class IndexApp extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className={style.container}>
           <Switch>
             <Route path="/admin" component={Admin} />
             <Route path="/404" component={NotFound} />
