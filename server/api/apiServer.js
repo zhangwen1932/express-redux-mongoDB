@@ -21,9 +21,9 @@ const app = new Express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('express_react_cookie'));
 app.use(session({
-  secret: 'express_react_cookie',
+  secret: 'express_react_cookie', // 对session_id相关的cookie进行签名
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: true, // 是否保存初始化的会话
   cookie: { maxAge: 60 * 1000 }, // 过期时间 单位毫秒
 }));
 
