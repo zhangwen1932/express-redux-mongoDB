@@ -26,5 +26,6 @@ export function* loginFlow() {
     } else {
       yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '用户名密码错误', msgType: 1 });
     }
+    yield put({ type: IndexActionTypes.CLEAR_MESSAGE, msgCOntent: '', msgType: 1 });
   }
 }
