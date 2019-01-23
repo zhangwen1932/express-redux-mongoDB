@@ -5,19 +5,26 @@ import {
   Switch,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { message } from 'antd';
+
 import Admin from './admin/Admin';
 import Front from './front/Front';
 import NotFound from './notFound/NotFound';
-import './style.css';
+import style from './style.css';
 
 
 class IndexApp extends Component {
+  componentDidUpdate() {
+    const { notification } = this.props;
+    if (notification.content) {
+      message.info(notification.content);
+    }
+  }
+
   render() {
-    const { isFetching } = this.props;
-    console.log('isFetching', isFetching);
     return (
       <Router>
-        <div>
+        <div className={style.container}>
           <Switch>
             <Route path="/admin" component={Admin} />
             <Route path="/404" component={NotFound} />
@@ -31,7 +38,7 @@ class IndexApp extends Component {
 
 function mapStateToProps(state) {
   return {
-    isFetching: state.globalState.isFetching,
+    notification: state.globalState.msg,
   };
 }
 

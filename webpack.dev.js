@@ -42,6 +42,7 @@ module.exports = {
               localIdentName: '[path][name]__[local]--[hash:base64:5]',
             },
           },
+          'postcss-loader',
         ],
       }, {
         test: /\.css$/,
@@ -49,6 +50,7 @@ module.exports = {
         use: [
           { loader: 'style-loader' }, // creates style nodes from JS strings
           { loader: 'css-loader' }, // translates CSS into CommonJS
+          'postcss-loader',
         ],
       }, {
         test: /\.scss$/,
@@ -56,6 +58,7 @@ module.exports = {
           { loader: 'style-loader' },
           { loader: 'css-loader' },
           { loader: 'sass-loader' },
+          'postcss-loader',
         ],
       }, {
         test: /\.(png|jpg|gif)$/,
@@ -69,10 +72,11 @@ module.exports = {
     ],
   },
   output: {
-    filename: '[name].bundle.js',
     path: path.join(__dirname, 'public'),
+    publicPath: '/',
+    filename: '[name]-[hash:8].js',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.json', '.sass', '.scss', '.less', 'jsx'],
   },
 };

@@ -10,6 +10,7 @@ div.setAttribute('id', 'app');
 document.body.appendChild(div);
 
 const mountNode = document.getElementById('app');
+mountNode.style.height = '100%';
 const store = configureStore();
 
 render(

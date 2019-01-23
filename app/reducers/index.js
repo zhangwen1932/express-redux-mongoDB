@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import admin from './admin';
 
 const initialState = {
   isFetching: false,
@@ -15,6 +16,7 @@ export const actionsTypes = {
   LOGIN: 'LOGIN',
   RESPONSE_USER_INFO: 'RESPONSE_USER_INFO',
   SET_MESSAGE: 'SET_MESSAGE',
+  CLEAR_MESSAGE: 'CLEAR_MESSAGE',
 };
 
 export const actions = {
@@ -44,6 +46,14 @@ export function reducer(state = initialState, action) {
           content: action.msgContent,
         },
       };
+    case actionsTypes.CLEAR_MESSAGE:
+      return {
+        ...state,
+        msg: {
+          type: action.msgType,
+          content: action.msgContent,
+        },
+      };
     case actionsTypes.RESPONSE_USER_INFO:
       return {
         ...state,
@@ -56,4 +66,5 @@ export function reducer(state = initialState, action) {
 
 export default combineReducers({
   globalState: reducer,
+  admin,
 });
