@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import admin from './admin';
 
 const initialState = {
   isFetching: false,
@@ -65,4 +66,5 @@ export function reducer(state = initialState, action) {
 
 export default combineReducers({
   globalState: reducer,
+  admin,
 });
