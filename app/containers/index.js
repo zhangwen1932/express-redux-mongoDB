@@ -22,8 +22,6 @@ class IndexApp extends Component {
   }
 
   render() {
-    const { isFetching } = this.props;
-    console.log('isFetching', isFetching);
     return (
       <Router>
         <div>
@@ -40,7 +38,6 @@ class IndexApp extends Component {
 
 function mapStateToProps(state) {
   return {
-    isFetching: state.globalState.isFetching,
     notification: state.globalState.msg,
   };
 }
