@@ -15,6 +15,7 @@ export const actionsTypes = {
   LOGIN: 'LOGIN',
   RESPONSE_USER_INFO: 'RESPONSE_USER_INFO',
   SET_MESSAGE: 'SET_MESSAGE',
+  CLEAR_MESSAGE: 'CLEAR_MESSAGE',
 };
 
 export const actions = {
@@ -39,6 +40,14 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
+        msg: {
+          type: action.msgType,
+          content: action.msgContent,
+        },
+      };
+    case actionsTypes.CLEAR_MESSAGE:
+      return {
+        ...state,
         msg: {
           type: action.msgType,
           content: action.msgContent,
