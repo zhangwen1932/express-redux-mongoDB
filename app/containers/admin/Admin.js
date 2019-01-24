@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import style from './style.css';
 
@@ -15,13 +16,33 @@ import UserList from './components/userlist/UserList';
 import UserArticle from './components/userArticle/UserArticle';
 
 import { actions } from '../../reducers/index';
+import { actions as AdminActions } from '../../reducers/admin';
 
 class Admin extends Component {
+  constructor(props) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
+
+  componentWillReceiveProps() {
+    this.props.change_location_admin(window.location.pathname.replace(/\/admin/, '') || '/');
+  }
+
+  handleChangeURL = (key) => {
+    console.log('key', key);
+    const url = `/admin${key}`;
+    console.log('url', url);
+    this.props.change_location_admin(key.key);
+    this.props.history.push(key.key);
+  }
+
   render() {
     const { login, userInfo } = this.props;
     const {
       Content, Sider,
     } = Layout;
+    const { url } = this.props.match;
+    console.log('this.props.match', this.props.match);
     return (
       <div className={style.container}>
         {
@@ -30,16 +51,18 @@ class Admin extends Component {
               <Layout className={style.layout}>
                 <Sider>
                   <Menu
+                    selectedKeys={[this.props.url]}
                     defaultSelectedKeys={['1']}
                     defaultOpenKeys={['sub1']}
                     mode="inline"
                     theme="dark"
+                    onClick={this.handleChangeURL}
                   >
-                    <Menu.Item key="1">
+                    <Menu.Item key="/admin">
                       <Icon type="pie-chart" />
                       <span>用户列表</span>
                     </Menu.Item>
-                    <Menu.Item key="2">
+                    <Menu.Item key="/admin/articleList">
                       <Icon type="pie-chart" />
                       <span>文章列表</span>
                     </Menu.Item>
@@ -49,7 +72,7 @@ class Admin extends Component {
                   <Content>
                     <Switch>
                       <Route exact path="/admin" component={UserList} />
-                      <Route path="/admin/article" component={UserArticle} />
+                      <Route path="/admin/articleList" component={UserArticle} />
                     </Switch>
                   </Content>
                 </Layout>
@@ -71,6 +94,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     login: bindActionCreators(actions.handleLogin, dispatch),
+    change_location_admin: bindActionCreators(AdminActions.changeLocationAdmin, dispatch),
   };
 }
 
