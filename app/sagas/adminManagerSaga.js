@@ -7,7 +7,7 @@ import { actionsTypes as IndexActionTypes } from '../reducers';
 export function* login(username, password) {
   yield put({ type: IndexActionTypes.FETCH_START });
   try {
-    return yield call(post, '/login', { username, password });
+    return yield call(post, '/admin/user/login', { username, password });
   } catch (error) {
     return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '服务器错误', msgType: 0 });
   } finally {
@@ -34,7 +34,7 @@ export function* userAuth() {
     yield take(IndexActionTypes.USER_AUTH);
     try {
       yield put({ type: IndexActionTypes.FETCH_START });
-      const response = yield call(get, '/userInfo');
+      const response = yield call(get, '/admin/user/userInfo');
       if (response && response.code === 0) {
         yield put({ type: IndexActionTypes.RESPONSE_USER_INFO, data: response.data });
       }

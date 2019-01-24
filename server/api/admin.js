@@ -3,6 +3,9 @@ import { responseClient } from '../util';
 
 const router = Express.Router();
 
+router.use('/user', require('./user'));
+
+
 // admin请求后台验证
 router.use((req, res, next) => {
   if (req.session.userInfo) {
@@ -11,6 +14,5 @@ router.use((req, res, next) => {
     res.send(responseClient(res, 200, 1, '身份信息已过期，请重新登录'));
   }
 });
-
 
 module.exports = router;
