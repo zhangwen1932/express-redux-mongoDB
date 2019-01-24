@@ -24,7 +24,7 @@ app.use(session({
   secret: 'express_react_cookie', // 对session_id相关的cookie进行签名
   resave: true,
   saveUninitialized: true, // 是否保存初始化的会话
-  cookie: { maxAge: 60 * 1000 }, // 过期时间 单位毫秒
+  cookie: { maxAge: 60 * 1000 * 30 }, // 过期时间 单位毫秒
 }));
 
 // 测试接口是否有问题
