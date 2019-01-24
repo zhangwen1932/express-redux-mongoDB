@@ -5,9 +5,6 @@ import { responseClient, md5 } from '../util';
 const router = Express.Router();
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
-  console.log('req.session.username', req.session);
-  console.log('req.body.username', req.body.username);
-
   if (!username) {
     responseClient(res, 200, 2, '用户名不可为空');
     return;
@@ -22,11 +19,14 @@ router.post('/login', (req, res) => {
   }).then((userInfo) => {
     if (userInfo) {
       // 登录成功
-      req.session.username = userInfo.username;
       const data = {};
       data.username = userInfo.username;
       data.userType = userInfo.type;
       data.userId = userInfo._id;
+
+      // 登录成功后设置session
+      req.session.userInfo = data;
+      console.log('req.session是', req.session.userInfo);
       responseClient(res, 200, 0, '登录成功', data);
       return;
     }
@@ -77,6 +77,15 @@ router.post('/register', (req, res) => {
     }).catch((err) => {
       responseClient(res);
     });
+});
+
+// 用户验证
+router.get('/userInfo', (req, res) => {
+  if (req.session.userInfo) {
+    responseClient(res, 200, 0, '', req.session.userInfo);
+  } else {
+    responseClient(res, 200, 1, '请重新登录', req.session.userInfo);
+  }
 });
 
 module.exports = router;

@@ -5,15 +5,23 @@ import {
   Switch,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { message } from 'antd';
 
+import { actions } from '../reducers';
 import Admin from './admin/Admin';
 import Front from './front/Front';
 import NotFound from './notFound/NotFound';
 import style from './style.css';
 
+const { userAuth } = actions;
 
 class IndexApp extends Component {
+  componentDidMount() {
+    const { userVerify } = this.props;
+    userVerify();
+  }
+
   componentDidUpdate() {
     const { notification } = this.props;
     if (notification.content) {
@@ -42,6 +50,12 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    userVerify: bindActionCreators(userAuth, dispatch),
+  };
+}
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(IndexApp);

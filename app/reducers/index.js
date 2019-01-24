@@ -17,6 +17,7 @@ export const actionsTypes = {
   RESPONSE_USER_INFO: 'RESPONSE_USER_INFO',
   SET_MESSAGE: 'SET_MESSAGE',
   CLEAR_MESSAGE: 'CLEAR_MESSAGE',
+  USER_AUTH: 'USER_AUTH"',
 };
 
 export const actions = {
@@ -24,6 +25,9 @@ export const actions = {
     type: actionsTypes.LOGIN,
     username,
     password,
+  }),
+  userAuth: () => ({
+    type: actionsTypes.USER_AUTH,
   }),
 };
 
