@@ -1,2 +1,3 @@
-登录: '/api/login'
-注册: '/api/register'
+登录: '/api/admin/user/login'
+注册: '/api/admin/user/register'
+用户验证: '/api/admin/user/userInfo'

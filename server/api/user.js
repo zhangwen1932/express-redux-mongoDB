@@ -26,7 +26,6 @@ router.post('/login', (req, res) => {
 
       // 登录成功后设置session
       req.session.userInfo = data;
-      console.log('req.session是', req.session.userInfo);
       responseClient(res, 200, 0, '登录成功', data);
       return;
     }
