@@ -7,33 +7,22 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 import style from './style.css';
 
 import Login from './components/login/Login';
 import UserList from './components/userlist/UserList';
 import UserArticle from './components/userArticle/UserArticle';
+import NewArticle from './components/newArticle/NewArticle';
 
 import { actions } from '../../reducers/index';
 import { actions as AdminActions } from '../../reducers/admin';
 
 class Admin extends Component {
-  constructor(props) {
-    super(props);
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-  }
-
-  componentWillReceiveProps() {
-    this.props.change_location_admin(window.location.pathname.replace(/\/admin/, '') || '/');
-  }
-
   handleChangeURL = (key) => {
-    console.log('key', key);
-    const url = `/admin${key}`;
-    console.log('url', url);
-    this.props.change_location_admin(key.key);
-    this.props.history.push(key.key);
+    const url = `${key.key}`;
+    this.props.change_location_admin(url); // 先修改路由
+    this.props.history.push(url); // 这块做跳转
   }
 
   render() {
@@ -41,8 +30,6 @@ class Admin extends Component {
     const {
       Content, Sider,
     } = Layout;
-    const { url } = this.props.match;
-    console.log('this.props.match', this.props.match);
     return (
       <div className={style.container}>
         {
@@ -51,7 +38,6 @@ class Admin extends Component {
               <Layout className={style.layout}>
                 <Sider>
                   <Menu
-                    selectedKeys={[this.props.url]}
                     defaultSelectedKeys={['1']}
                     defaultOpenKeys={['sub1']}
                     mode="inline"
@@ -66,6 +52,10 @@ class Admin extends Component {
                       <Icon type="pie-chart" />
                       <span>文章列表</span>
                     </Menu.Item>
+                    <Menu.Item key="/admin/newArticle">
+                      <Icon type="pie-chart" />
+                      <span>发表文章</span>
+                    </Menu.Item>
                   </Menu>
                 </Sider>
                 <Layout>
@@ -73,6 +63,7 @@ class Admin extends Component {
                     <Switch>
                       <Route exact path="/admin" component={UserList} />
                       <Route path="/admin/articleList" component={UserArticle} />
+                      <Route path="/admin/newArticle" component={NewArticle} />
                     </Switch>
                   </Content>
                 </Layout>
