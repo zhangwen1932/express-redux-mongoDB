@@ -4,7 +4,7 @@ import { responseClient } from '../util';
 const router = Express.Router();
 
 router.use('/user', require('./user'));
-
+router.use('/article', require('./article'));
 
 // admin请求后台验证
 router.use((req, res, next) => {
