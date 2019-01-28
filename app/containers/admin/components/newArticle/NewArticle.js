@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { actions } from '../../../../reducers/adminArticle';
 
 import style from './style.css';
 
 const { TextArea } = Input;
 
-class UserArticle extends Component {
+class AddArticle extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { form } = this.props;
     form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        const { addArticle } = this.props;
+        addArticle(values.title, values.content);
       }
     });
   }
@@ -53,4 +59,24 @@ class UserArticle extends Component {
   }
 }
 
-export default Form.create({ name: 'publishArticle' })(UserArticle);
+const WrapperAddArticle = Form.create({ name: 'addArticle' })(AddArticle);
+
+function mapStateToProps(state) {
+  console.log(state);
+  const { title, content } = state.admin.newArticle;
+  return {
+    title,
+    content,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addArticle: bindActionCreators(actions.addArticle, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WrapperAddArticle);

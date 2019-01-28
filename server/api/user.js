@@ -65,11 +65,11 @@ router.post('/register', (req, res) => {
         .then(() => {
           User.findOne({ username: userName })
             .then((userInfo) => {
-              const testdata = {};
-              testdata.username = userInfo.username;
-              testdata.userType = userInfo.type;
-              testdata.userId = userInfo._id;
-              responseClient(res, 200, 0, '注册成功', data);
+              const userdata = {};
+              userdata.username = userInfo.username;
+              userdata.userType = userInfo.type;
+              userdata.userId = userInfo._id;
+              responseClient(res, 200, 0, '注册成功', userdata);
             });
         });
     // eslint-disable-next-line no-unused-vars

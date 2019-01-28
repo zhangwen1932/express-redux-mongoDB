@@ -1,4 +1,3 @@
-
 import { put, take, call } from 'redux-saga/effects';
 import { get, post } from '../fetch/fetch';
 
@@ -9,7 +8,7 @@ export function* login(username, password) {
   try {
     return yield call(post, '/admin/user/login', { username, password });
   } catch (error) {
-    return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '服务器错误', msgType: 0 });
+    return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '服务器错误', msgType: 1 });
   } finally {
     yield put({ type: IndexActionTypes.FETCH_END });
   }
@@ -20,7 +19,7 @@ export function* loginFlow() {
     const request = yield take(IndexActionTypes.LOGIN);
     const response = yield call(login, request.username, request.password);
     if (response && response.code === 0) {
-      yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '登录成功!', msgType: 1 });
+      yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '登录成功!', msgType: 0 });
       yield put({ type: IndexActionTypes.RESPONSE_USER_INFO, data: response.data });
     } else {
       yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '用户名密码错误', msgType: 1 });

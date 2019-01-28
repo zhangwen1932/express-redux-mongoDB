@@ -21,7 +21,7 @@ import { actions as AdminActions } from '../../reducers/admin';
 class Admin extends Component {
   handleChangeURL = (key) => {
     const url = `${key.key}`;
-    this.props.change_location_admin(url); // 先修改路由
+    this.props.changeLocationAdmin(url); // 先修改路由
     this.props.history.push(url); // 这块做跳转
   }
 
@@ -85,7 +85,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     login: bindActionCreators(actions.handleLogin, dispatch),
-    change_location_admin: bindActionCreators(AdminActions.changeLocationAdmin, dispatch),
+    changeLocationAdmin: bindActionCreators(AdminActions.changeLocationAdmin, dispatch),
   };
 }
 
