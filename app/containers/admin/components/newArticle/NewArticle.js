@@ -15,7 +15,6 @@ class AddArticle extends Component {
     const { form } = this.props;
     form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         const { addArticle } = this.props;
         addArticle(values.title, values.content);
       }
@@ -62,7 +61,6 @@ class AddArticle extends Component {
 const WrapperAddArticle = Form.create({ name: 'addArticle' })(AddArticle);
 
 function mapStateToProps(state) {
-  console.log(state);
   const { title, content } = state.admin.newArticle;
   return {
     title,

@@ -6,11 +6,7 @@ import connectHistoryApiFallback from 'connect-history-api-fallback';
 import config from '../config/config';
 
 const app = new Express();
-// eslint-disable-next-line prefer-destructuring
-const port = config.port;
-
-app.use('/', Express.static(path.join(__dirname, '..', 'public')));
-app.use('/', connectHistoryApiFallback());
+const port = config;
 
 const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
 const proxy = httpProxy.createProxyServer({
@@ -20,6 +16,9 @@ const proxy = httpProxy.createProxyServer({
 app.use('/api', (req, res) => {
   proxy.web(req, res, { target: targetUrl });
 });
+
+app.use('/', connectHistoryApiFallback());
+app.use('/', Express.static(path.join(__dirname, '..', 'public')));
 
 // 热更新
 if (process.env.NODE_ENV !== 'production') {

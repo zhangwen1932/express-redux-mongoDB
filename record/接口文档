@@ -2,3 +2,4 @@
 注册: '/api/admin/user/register'
 用户验证: '/api/admin/user/userInfo'
 发表文章: '/api/admin/article/addArticle'
+获取文章列表: 

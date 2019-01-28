@@ -26,4 +26,19 @@ router.post('/addArticle', (req, res) => {
   });
 });
 
+router.get('/getArticles', (req, res) => {
+  console.log('hello world');
+  const searchCondition = { req };
+  const responseData = {
+    total: 0,
+    list: [],
+  };
+  // 查找数据
+  Article.count(searchCondition)
+    .then((count) => {
+      responseData.total = count;
+      console.log('responseData', responseData);
+    });
+});
+
 module.exports = router;
