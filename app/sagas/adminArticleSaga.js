@@ -18,8 +18,7 @@ export function* addArticle(title, content) {
 export function* addArticleFlow() {
   while (true) {
     const request = yield take(AdminActionTypes.ADD_ARTICLE);
-    console.log('request', request);
-    const response = yield call(addArticle);
+    const response = yield call(addArticle, request.title, request.content);
     if (response && response.code === 0) {
       yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '发表文章成功', msgType: 0 });
     } else {
