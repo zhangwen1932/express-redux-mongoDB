@@ -29,16 +29,24 @@ router.post('/addArticle', (req, res) => {
 
 router.get('/getArticles', (req, res) => {
   const { isPublish } = req.query;
-  console.log('title', isPublish);
-  responseClient(res, 200, 0, '服务器响应', isPublish);
   const searchCondition = { isPublish };
-  console.log('searchCondition', searchCondition);
-  Article.countDocuments(searchCondition, (err, total) => {
-    if (err) {
+  const responseData = {
+    total: 0,
+    list: [],
+  };
+  Article.countDocuments(searchCondition)
+    .then((total) => {
+      responseData.total = total;
+      Article.find(searchCondition, '_id title content isPublish')
+        .then((result) => {
+          responseData.list = result;
+          responseClient(res, 200, 0, 'success', responseData);
+        }).cancel((err) => {
+          console.log('err', err);
+        });
+    }).cancel((err) => {
       console.log('err', err);
-    }
-    console.log('total', total);
-  });
+    });
 });
 
 module.exports = router;
