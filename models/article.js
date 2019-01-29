@@ -1,4 +1,4 @@
 import mongoose from 'mongoose';
-import articleSchema from '../schemas/articles';
+import articleSchema from '../schemas/article';
 
 module.exports = mongoose.model('article', articleSchema);

@@ -6,8 +6,9 @@ import { actionsTypes as IndexActionTypes } from '../reducers';
 
 export function* addArticle(title, content) {
   yield put({ type: IndexActionTypes.FETCH_START });
+  const isPublish = 'true';
   try {
-    return yield call(post, '/admin/article/addArticle', { title, content });
+    return yield call(post, '/admin/article/addArticle', { title, content, isPublish });
   } catch (error) {
     return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '服务器错误', msgType: 1 });
   } finally {
