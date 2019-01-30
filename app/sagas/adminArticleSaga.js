@@ -1,7 +1,8 @@
 import { put, take, call } from 'redux-saga/effects';
-import { post } from '../fetch/fetch';
+import { post, get } from '../fetch/fetch';
 
-import { actionsTypes as AdminActionTypes } from '../reducers/adminArticle';
+import { actionsTypes as AdminArticleTypes } from '../reducers/adminALLArticles';
+import { actionsTypes as AdminActionTypes } from '../reducers/admiNewArticle';
 import { actionsTypes as IndexActionTypes } from '../reducers';
 
 export function* addArticle(title, content) {
@@ -26,5 +27,23 @@ export function* addArticleFlow() {
       yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '发表文章失败', msgType: 1 });
     }
     yield put({ type: IndexActionTypes.CLEAR_MESSAGE, msgContent: '', msgType: 1 });
+  }
+}
+
+export function* getArticles() {
+  while (true) {
+    yield take(AdminArticleTypes.ALL_ARTICLE);
+    try {
+      yield put({ type: IndexActionTypes.FETCH_START });
+      const response = yield call(get, '/admin/article/getArticles?pageNumber=1&isPublish=true');
+      console.log('response', response);
+      if (response && response.code === 0) {
+        yield put({ type: AdminArticleTypes.ALL_ARTICLE, data: response.data });
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      yield put({ type: IndexActionTypes.FETCH_END });
+    }
   }
 }

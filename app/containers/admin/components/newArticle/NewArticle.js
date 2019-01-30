@@ -3,7 +3,7 @@ import { Form, Input, Button } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { actions } from '../../../../reducers/adminArticle';
+import { actions } from '../../../../reducers/admiNewArticle';
 
 import style from './style.css';
 

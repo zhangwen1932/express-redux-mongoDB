@@ -12,7 +12,7 @@ import style from './style.css';
 
 import Login from './components/login/Login';
 import UserList from './components/userlist/UserList';
-import UserArticle from './components/userArticle/UserArticle';
+import ArticleList from './components/articleList/ArticleList';
 import NewArticle from './components/newArticle/NewArticle';
 
 import { actions } from '../../reducers/index';
@@ -62,7 +62,7 @@ class Admin extends Component {
                   <Content>
                     <Switch>
                       <Route exact path="/admin" component={UserList} />
-                      <Route path="/admin/articleList" component={UserArticle} />
+                      <Route path="/admin/articleList" component={ArticleList} />
                       <Route path="/admin/newArticle" component={NewArticle} />
                     </Switch>
                   </Content>
