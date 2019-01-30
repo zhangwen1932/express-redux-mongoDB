@@ -1,24 +1,26 @@
-export const actionsTypes = {
-  ALL_ARTICLE: 'ALL_ARTICLE',
-};
-
 const initialState = {
   articles: [],
+  total: 0,
+};
+
+export const actionsTypes = {
+  GET_ALL_ARTICLES: 'GET_ALL_ARTICLES',
+  RESPONSE_GET_ALL_ARTICLES: 'RESPONSE_GET_ALL_ARTICLES',
 };
 
 export const actions = {
-  allArticle: () => ({
-    type: actionsTypes.ALL_ARTICLE,
+  getAllArticles: () => ({
+    type: actionsTypes.GET_ALL_ARTICLES,
   }),
 };
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case actionsTypes.ALL_ARTICLE:
-      console.log('action', action);
+    case actionsTypes.RESPONSE_GET_ALL_ARTICLES:
       return {
         ...state,
-        articles: action.data,
+        articles: [...action.data.list],
+        total: action.data.total,
       };
     default:
       return state;
