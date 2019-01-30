@@ -2,31 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+
 import { List } from 'antd';
 
 import { actions as ArticleActions } from '../../../../reducers/adminALLArticles';
 import style from './style.css';
 
 class ArticleList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listData: [],
-    };
-  }
-
   componentDidMount() {
-    const { getArticles } = this.props;
-    getArticles();
-    const { articles } = this.props;
-    console.log('articles', articles);
-    this.setState({
-      listData: articles.list,
-    });
+    const { getAllArticles } = this.props;
+    getAllArticles();
   }
 
   render() {
-    const { listData } = this.state;
+    const { articles } = this.props;
     return (
       <div className={style.container}>
         <div className={style.box}>
@@ -39,7 +28,7 @@ class ArticleList extends Component {
               },
               pageSize: 3,
             }}
-            dataSource={listData}
+            dataSource={articles}
             renderItem={item => (
               <List.Item
                 key={item.title}
@@ -60,15 +49,14 @@ class ArticleList extends Component {
 }
 
 function mapStateToProps(state) {
-  const { articles } = state.admin.allArticles;
   return {
-    articles,
+    articles: state.admin.allArticles.articles,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getArticles: bindActionCreators(ArticleActions.allArticle, dispatch),
+    getAllArticles: bindActionCreators(ArticleActions.getAllArticles, dispatch),
   };
 }
 

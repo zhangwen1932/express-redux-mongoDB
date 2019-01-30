@@ -31,19 +31,27 @@ export function* addArticleFlow() {
 }
 
 export function* getArticles() {
+  yield put({ type: IndexActionTypes.FETCH_START });
+  try {
+    const pageNum = 1;
+    return yield call(get, `/admin/article/getArticles?pageNum=${pageNum}&isPublish=true`);
+  } catch (err) {
+    return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0 });
+  } finally {
+    yield put({ type: IndexActionTypes.FETCH_END });
+  }
+}
+
+export function* getArticlesFlow() {
   while (true) {
-    yield take(AdminArticleTypes.ALL_ARTICLE);
-    try {
-      yield put({ type: IndexActionTypes.FETCH_START });
-      const response = yield call(get, '/admin/article/getArticles?pageNumber=1&isPublish=true');
-      console.log('response', response);
-      if (response && response.code === 0) {
-        yield put({ type: AdminArticleTypes.ALL_ARTICLE, data: response.data });
+    yield take(AdminArticleTypes.GET_ALL_ARTICLES);
+    const res = yield call(getArticles);
+    if (res) {
+      if (res.code === 0) {
+        yield put({ type: AdminArticleTypes.RESPONSE_GET_ALL_ARTICLES, data: res.data });
+      } else {
+        yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0 });
       }
-    } catch (err) {
-      console.log(err);
-    } finally {
-      yield put({ type: IndexActionTypes.FETCH_END });
     }
   }
 }
