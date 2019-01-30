@@ -5,3 +5,10 @@
 .box{
   padding: 2rem;
 }
+.content{
+  color: #aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100px;
+  line-height: 24px;
+}

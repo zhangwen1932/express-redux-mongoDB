@@ -16,6 +16,7 @@ class ArticleList extends Component {
 
   render() {
     const { articles } = this.props;
+    console.log('articles', articles);
     return (
       <div className={style.container}>
         <div className={style.box}>
@@ -26,18 +27,24 @@ class ArticleList extends Component {
               pageSize: 5,
             }}
             dataSource={articles}
-            renderItem={item => (
-              <List.Item
-                key={item.title}
-                extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
-              >
-                <List.Item.Meta
-                  title={<a href={item.href}>{item.title}</a>}
-                  description={item.description}
-                />
-                {item.content}
-              </List.Item>
-            )}
+            renderItem={(item) => {
+              console.log(item);
+              console.log('item.content', item.content);
+              return (
+                <List.Item
+                  key={item.title}
+                  extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
+                >
+                  <List.Item.Meta
+                    title={<a href={item.href}>{item.title}</a>}
+                    description={item.description}
+                  />
+                  <div className={style.content}>
+                    {item.content}
+                  </div>
+                </List.Item>
+              );
+            }}
           />
         </div>
       </div>
