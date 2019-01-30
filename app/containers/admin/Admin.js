@@ -38,22 +38,22 @@ class Admin extends Component {
               <Layout className={style.layout}>
                 <Sider>
                   <Menu
-                    defaultSelectedKeys={['1']}
+                    defaultSelectedKeys={['/admin']}
                     defaultOpenKeys={['sub1']}
                     mode="inline"
                     theme="dark"
                     onClick={this.handleChangeURL}
                   >
                     <Menu.Item key="/admin">
-                      <Icon type="pie-chart" />
+                      <Icon type="team" />
                       <span>用户列表</span>
                     </Menu.Item>
                     <Menu.Item key="/admin/articleList">
-                      <Icon type="pie-chart" />
+                      <Icon type="file-text" />
                       <span>文章列表</span>
                     </Menu.Item>
                     <Menu.Item key="/admin/newArticle">
-                      <Icon type="pie-chart" />
+                      <Icon type="cloud-upload" />
                       <span>发表文章</span>
                     </Menu.Item>
                   </Menu>
