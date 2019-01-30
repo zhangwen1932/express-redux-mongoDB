@@ -23,10 +23,7 @@ class ArticleList extends Component {
             itemLayout="vertical"
             size="large"
             pagination={{
-              onChange: (page) => {
-                console.log(page);
-              },
-              pageSize: 3,
+              pageSize: 5,
             }}
             dataSource={articles}
             renderItem={item => (
