@@ -10,6 +10,13 @@ import style from './style.css';
 const { TextArea } = Input;
 
 class AddArticle extends Component {
+  componentDidUpdate() {
+    const { id, history } = this.props;
+    if (id) {
+      history.push('/admin/articleList');
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { form } = this.props;
@@ -61,8 +68,9 @@ class AddArticle extends Component {
 const WrapperAddArticle = Form.create({ name: 'addArticle' })(AddArticle);
 
 function mapStateToProps(state) {
-  const { title, content } = state.admin.newArticle;
+  const { id, title, content } = state.admin.newArticle;
   return {
+    id,
     title,
     content,
   };

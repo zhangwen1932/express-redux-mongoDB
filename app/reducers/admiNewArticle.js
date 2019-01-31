@@ -1,10 +1,12 @@
-export const actionsTypes = {
-  ADD_ARTICLE: 'ADD_ARTICLE',
-};
-
 const initialState = {
+  id: '',
   title: '',
   content: '',
+};
+
+export const actionsTypes = {
+  ADD_ARTICLE: 'ADD_ARTICLE',
+  RESPONSE_ADD_ARTICLE: 'RESPONSE_ADD_ARTICLE',
 };
 
 export const actions = {
@@ -17,11 +19,12 @@ export const actions = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case actionsTypes.ADD_ARTICLE:
+    case actionsTypes.RESPONSE_ADD_ARTICLE:
       return {
         ...state,
-        title: action.title,
-        content: action.content,
+        id: action.data._id,
+        title: '',
+        content: '',
       };
     default:
       return state;
