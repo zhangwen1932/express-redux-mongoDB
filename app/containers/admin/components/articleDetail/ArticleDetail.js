@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
-export default class ArticleDetail extends Component {
+class ArticleDetail extends Component {
   render() {
     return (
       <h1>Article Page</h1>
     );
   }
 }
+
+export default ArticleDetail;
