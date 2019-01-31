@@ -23,6 +23,7 @@ export function* addArticleFlow() {
     const response = yield call(addArticle, request.title, request.content);
     if (response && response.code === 0) {
       yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '发表文章成功', msgType: 0 });
+      yield put({ type: AdminActionTypes.RESPONSE_ADD_ARTICLE, data: response.data });
     } else {
       yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '发表文章失败', msgType: 1 });
     }
@@ -33,8 +34,7 @@ export function* addArticleFlow() {
 export function* getArticles() {
   yield put({ type: IndexActionTypes.FETCH_START });
   try {
-    const pageNum = 1;
-    return yield call(get, `/admin/article/getArticles?pageNum=${pageNum}&isPublish=true`);
+    return yield call(get, '/admin/article/getArticles?isPublish=true');
   } catch (err) {
     return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0 });
   } finally {
