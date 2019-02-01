@@ -50,7 +50,6 @@ router.get('/getArticles', (req, res) => {
 });
 
 router.get('/getArticlesDetail', (req, res) => {
-  console.log('req.query', req.query);
   const { id } = req.query;
   Article.findOne({ _id: id }, '_id title content isPublish')
     .then((result) => {

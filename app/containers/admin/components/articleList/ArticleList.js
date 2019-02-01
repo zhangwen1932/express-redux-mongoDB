@@ -12,9 +12,11 @@ class ArticleList extends Component {
   componentDidMount() {
     const { getAllArticles } = this.props;
     getAllArticles();
+    console.log('test CompoentDidMount');
   }
 
   render() {
+    console.log('render');
     const { articles } = this.props;
     return (
       <div className={style.container}>

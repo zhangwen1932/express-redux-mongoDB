@@ -31,7 +31,7 @@ export function* addArticleFlow() {
   }
 }
 
-export function* getArticles() {
+export function* getArticleList() {
   yield put({ type: IndexActionTypes.FETCH_START });
   try {
     return yield call(get, '/admin/article/getArticles?isPublish=true');
@@ -42,10 +42,10 @@ export function* getArticles() {
   }
 }
 
-export function* getArticlesFlow() {
+export function* getArticleListFlow() {
   while (true) {
     yield take(AdminArticleTypes.GET_ALL_ARTICLES);
-    const res = yield call(getArticles);
+    const res = yield call(getArticleList);
     if (res) {
       if (res.code === 0) {
         yield put({ type: AdminArticleTypes.RESPONSE_GET_ALL_ARTICLES, data: res.data });

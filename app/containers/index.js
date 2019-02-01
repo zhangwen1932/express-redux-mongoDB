@@ -12,6 +12,7 @@ import { actions } from '../reducers';
 import Admin from './admin/Admin';
 import Front from './front/Front';
 import NotFound from './notFound/NotFound';
+import Article from './article/Article';
 import style from './style.css';
 
 const { userAuth } = actions;
@@ -36,6 +37,7 @@ class IndexApp extends Component {
           <Switch>
             <Route path="/admin" component={Admin} />
             <Route path="/404" component={NotFound} />
+            <Route path="/article" component={Article} />
             <Route component={Front} />
           </Switch>
         </div>
