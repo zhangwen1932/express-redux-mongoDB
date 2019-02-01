@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { actions } from '../../../../reducers/admiNewArticle';
+import { actions as AdminActions } from '../../../../reducers/admin';
 
 import style from './style.css';
 
@@ -11,9 +12,10 @@ const { TextArea } = Input;
 
 class AddArticle extends Component {
   componentDidUpdate() {
-    const { id, history } = this.props;
+    const { id, history, changeLocationAdmin } = this.props;
     if (id) {
-      history.push('/admin/articleList');
+      changeLocationAdmin(`/article?id=${id}`);
+      history.push(`/article?id=${id}`);
     }
   }
 
@@ -79,6 +81,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     addArticle: bindActionCreators(actions.addArticle, dispatch),
+    changeLocationAdmin: bindActionCreators(AdminActions.changeLocationAdmin, dispatch),
   };
 }
 
