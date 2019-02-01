@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import style from './style.css';
+import Banner from './components/banner/Banner';
 
 import { actions } from '../../reducers/articleDetail';
 
@@ -18,9 +20,12 @@ class Article extends Component {
   render() {
     const { title, content } = this.props;
     return (
-      <div>
-        <h1>{ title }</h1>
-        <p>{ content }</p>
+      <div className={style.box}>
+        <Banner title={title} />
+        <div className={style.container}>
+          <h1>{title}</h1>
+          <p>{content}</p>
+        </div>
       </div>
     );
   }
