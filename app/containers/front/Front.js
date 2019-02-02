@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import Nav from './components/nav/Nav';
+import Banner from './components/banner/Banner';
+import Content from './components/content/Content';
+import Footer from './components/footer/Footer';
 
-class Front extends Component {
+export default class Home extends Component {
   render() {
     return (
-      <h1>Front Page</h1>
+      <div>
+        <Nav />
+        <Banner />
+        <Content />
+        <Footer />
+      </div>
     );
   }
 }
-
-export default Front;

@@ -1,0 +1,33 @@
+.header{
+  background: #001529;
+  width: 100%;
+  z-index: 1;
+  box-shadow: 0 5px 8px fade(#000, 15);
+  position: relative;
+  top: 0;
+}
+.page{
+  padding: 0 24px;
+}
+.logo{
+  padding: 0 24px;
+  display: inline-block;
+  position: relative;
+  width: 150px;
+  line-height: 64px;
+}
+.logo>img{
+  vertical-align: middle;
+  display: inline-block;
+}
+.menu{
+  float: right;
+}
+.menu>ul{
+  line-height: 62px;
+  background: transparent;
+  color: #fff;
+  height: 64px;
+  border-bottom-color: transparent;
+  position: relative;
+}
