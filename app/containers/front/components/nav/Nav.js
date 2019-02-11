@@ -32,7 +32,6 @@ class Header extends Component {
               theme="default"
             >
               <Item key="0">首页</Item>
-              <Item key="1">我的简历</Item>
               <Item key="2">我的博客</Item>
               <Item key="3">联系我</Item>
             </Menu>

@@ -12,15 +12,17 @@ class Banner extends React.PureComponent {
       <div className={style.banner}>
         <QueueAnim
           key="QueueAnim"
-          type={['bottom', 'top']}
-          delay={200}
+          type={['top', 'bottom']}
+          delay={1000}
           className={style.text}
         >
           <div key="title" className={style.title}>
             <img src={logo} alt="img" />
           </div>
           <div key="content" className={style.content}>
-            很高兴来到我的个人网站,我是一个developer
+            <p>It is a long established fact that a reader will be </p>
+            <p>distracted by the readable content of a page when</p>
+            <p>looking at its layout.</p>
           </div>
           <Button ghost key="button" className={style.button}>
             了解更多

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Nav from './components/nav/Nav';
 import Banner from './components/banner/Banner';
-import Content from './components/content/Content';
+import About from './components/about/About';
+// import Article from './components/article/Article';
+// import Skill from './components/skill/Skill';
 import Footer from './components/footer/Footer';
 
 export default class Home extends Component {
@@ -10,7 +12,7 @@ export default class Home extends Component {
       <div>
         <Nav />
         <Banner />
-        <Content />
+        <About />
         <Footer />
       </div>
     );

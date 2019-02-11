@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-export default class Content extends Component {
+export default class Skill extends Component {
   render() {
     return (
-      <h1>Test</h1>
+      <h1>skill</h1>
     );
   }
 }
