@@ -1,0 +1,29 @@
+.container{
+  margin: 2rem;
+  background-color: #fff;
+}
+.baseView{
+  display: flex;
+  padding: 2rem;
+}
+.left {
+  width: 448px;
+}
+.right {
+  flex: 1;
+  padding-left: 104px;
+}
+.avatar{
+  margin: 10px 0;
+  width: 144px;
+  height: 144px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.avatar>img{
+  width: 100%;
+}
+.button_view {
+  width: 144px;
+  text-align: center;
+}

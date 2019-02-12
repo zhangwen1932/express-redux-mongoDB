@@ -16,7 +16,6 @@ class ArticleList extends Component {
 
   render() {
     const { articles } = this.props;
-    console.log('articles', articles);
     const articleUrl = 'http://localhost:9100/article?id=';
     return (
       <div className={style.container}>
@@ -37,7 +36,6 @@ class ArticleList extends Component {
                   title={<a href={articleUrl + item._id}>{item.title}</a>}
                   description={item.description}
                 />
-                {item.href ? true : console.log('item.href', item)}
                 <div className={style.content}>
                   {item.content}
                 </div>

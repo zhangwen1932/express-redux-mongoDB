@@ -18,7 +18,6 @@ export const actions = {
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case actionsTypes.RESPONSE_GET_ARTICLE:
-      console.log('action', action);
       return {
         ...state,
         title: action.data.title,
