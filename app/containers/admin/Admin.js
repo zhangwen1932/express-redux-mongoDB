@@ -11,7 +11,8 @@ import {
 import style from './style.css';
 
 import Login from './components/login/Login';
-import UserList from './components/userlist/UserList';
+import Account from './components/account/Account';
+import ProjectsList from './components/projectsList/ProjectsList';
 import ArticleList from './components/articleList/ArticleList';
 import NewArticle from './components/newArticle/NewArticle';
 
@@ -45,8 +46,8 @@ class Admin extends Component {
                     onClick={this.handleChangeURL}
                   >
                     <Menu.Item key="/admin">
-                      <Icon type="team" />
-                      <span>用户列表</span>
+                      <Icon type="setting" />
+                      <span>个人设置</span>
                     </Menu.Item>
                     <Menu.Item key="/admin/articleList">
                       <Icon type="file-text" />
@@ -56,14 +57,19 @@ class Admin extends Component {
                       <Icon type="cloud-upload" />
                       <span>发表文章</span>
                     </Menu.Item>
+                    <Menu.Item key="/admin/projects">
+                      <Icon type="project" />
+                      <span>项目列表</span>
+                    </Menu.Item>
                   </Menu>
                 </Sider>
                 <Layout>
                   <Content>
                     <Switch>
-                      <Route exact path="/admin" component={UserList} />
+                      <Route exact path="/admin" component={Account} />
                       <Route path="/admin/articleList" component={ArticleList} />
                       <Route path="/admin/newArticle" component={NewArticle} />
+                      <Route exact path="/admin/projects" component={ProjectsList} />
                     </Switch>
                   </Content>
                 </Layout>

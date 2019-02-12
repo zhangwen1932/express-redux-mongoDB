@@ -12,12 +12,12 @@ class ArticleList extends Component {
   componentDidMount() {
     const { getAllArticles } = this.props;
     getAllArticles();
-    console.log('test CompoentDidMount');
   }
 
   render() {
-    console.log('render');
     const { articles } = this.props;
+    console.log('articles', articles);
+    const articleUrl = 'http://localhost:9100/article?id=';
     return (
       <div className={style.container}>
         <div className={style.box}>
@@ -34,9 +34,10 @@ class ArticleList extends Component {
                 extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
               >
                 <List.Item.Meta
-                  title={<a href={item.href}>{item.title}</a>}
+                  title={<a href={articleUrl + item._id}>{item.title}</a>}
                   description={item.description}
                 />
+                {item.href ? true : console.log('item.href', item)}
                 <div className={style.content}>
                   {item.content}
                 </div>
