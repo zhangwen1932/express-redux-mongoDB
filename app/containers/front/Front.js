@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+  Switch,
+  Route,
+} from 'react-router-dom';
+import {
   Card, Row, Col, Tag, Divider, Icon,
 } from 'antd';
+
+import Articles from './components/articles/Articles';
+import Projects from './components/projects/Projects';
 
 import styles from './style.less';
 
@@ -11,26 +18,37 @@ import { actions as FrontActions } from '../../reducers/front';
 
 class Front extends Component {
   componentDidMount() {
-    const { getAuthorInfo } = this.props;
+    const { getAuthorInfo, getAuthorArticles } = this.props;
     getAuthorInfo();
+    getAuthorArticles();
+  }
+
+  onTabChange = (key) => {
+    const { changeLocation, history } = this.props;
+    changeLocation(key);
+    history.push(key); // 这块做跳转
   }
 
   render() {
     const {
-      children, authorName, profile, avatar, occupation, company,
+      authorName, profile, avatar, occupation, company, total,
     } = this.props;
     const operationTabList = [
       {
-        key: 'articles',
+        key: '/articles',
         tab: (
           <span>
             文章
-            <span style={{ fontSize: 14 }}>(8)</span>
+            <span style={{ fontSize: 14 }}>
+            (
+              { total }
+            )
+            </span>
           </span>
         ),
       },
       {
-        key: 'projects',
+        key: '/projects',
         tab: (
           <span>
             项目
@@ -78,8 +96,13 @@ class Front extends Component {
               className={styles.tabsCard}
               bordered={false}
               tabList={operationTabList}
+              onTabChange={(key) => { this.onTabChange(key, 'key'); }}
             >
-              {children}
+              <Switch>
+                <Route exact path="/" component={Articles} />
+                <Route path="/articles" component={Articles} />
+                <Route path="/projects" component={Projects} />
+              </Switch>
             </Card>
           </Col>
         </Row>
@@ -90,7 +113,7 @@ class Front extends Component {
 
 function mapStateToProps(state) {
   const {
-    authorName, profile, avatar, occupation, company,
+    authorName, profile, avatar, occupation, company, total, articles,
   } = state.front;
   return {
     authorName,
@@ -98,12 +121,16 @@ function mapStateToProps(state) {
     avatar,
     occupation,
     company,
+    total,
+    articles,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getAuthorInfo: bindActionCreators(FrontActions.getAuthorInfo, dispatch),
+    getAuthorArticles: bindActionCreators(FrontActions.getAuthorArticles, dispatch),
+    changeLocation: bindActionCreators(FrontActions.changeLocation, dispatch),
   };
 }
 

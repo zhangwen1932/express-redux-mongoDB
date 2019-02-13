@@ -16,7 +16,7 @@ class ArticleList extends Component {
 
   render() {
     const { articles } = this.props;
-    const articleUrl = 'http://localhost:9100/article?id=';
+    const articleUrl = 'http://localhost:9100/adminArticle?id=';
     return (
       <div className={style.container}>
         <div className={style.box}>

@@ -24,3 +24,24 @@ export function* getAutorInfoFlow() {
     }
   }
 }
+
+export function* getAuthorArticles() {
+  yield put({ type: IndexActionTypes.FETCH_START });
+  try {
+    return yield call(get, '/getAuthorArticles?isPublish=true');
+  } catch (error) {
+    return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '服务器错误', msgType: 1 });
+  } finally {
+    yield put({ type: IndexActionTypes.FETCH_END });
+  }
+}
+
+export function* getAutorArticlesFlow() {
+  while (true) {
+    yield take(FrontActionTypes.GET_AUTHOR_ARTICLES);
+    const response = yield call(getAuthorArticles);
+    if (response && response.code === 0) {
+      yield put({ type: FrontActionTypes.RESPONSE_AUTHOR_ARTICLES, data: response.data });
+    }
+  }
+}

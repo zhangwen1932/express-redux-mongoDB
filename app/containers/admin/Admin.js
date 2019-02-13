@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -21,9 +20,10 @@ import { actions as AdminActions } from '../../reducers/admin';
 
 class Admin extends Component {
   handleChangeURL = (key) => {
+    const { changeLocationAdmin, history } = this.props;
     const url = `${key.key}`;
-    this.props.changeLocationAdmin(url); // 先修改路由
-    this.props.history.push(url); // 这块做跳转
+    changeLocationAdmin(url); // 先修改路由
+    history.push(url); // 这块做跳转
   }
 
   render() {

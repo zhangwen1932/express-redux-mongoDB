@@ -21,7 +21,6 @@ export function* getArticleFlow() {
     const res = yield call(getArticle, request.id);
     if (res) {
       if (res.code === 0) {
-        console.log('res', res);
         yield put({ type: ArticleTypes.RESPONSE_GET_ARTICLE, data: res.data });
       } else {
         yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0 });
