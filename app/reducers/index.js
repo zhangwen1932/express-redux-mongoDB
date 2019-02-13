@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import admin from './admin';
 import { reducer as article } from './articleDetail';
+import { reducer as front } from './front';
 
 const initialState = {
   isFetching: false,
@@ -73,4 +74,5 @@ export default combineReducers({
   globalState: reducer,
   admin,
   article,
+  front,
 });

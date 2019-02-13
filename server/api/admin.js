@@ -3,7 +3,7 @@ import { responseClient } from '../util';
 
 const router = Express.Router();
 
-router.use('/user', require('./user'));
+router.use('/user', require('./adminUser'));
 router.use('/article', require('./article'));
 
 // admin请求后台验证

@@ -1,31 +1,35 @@
 import { combineReducers } from 'redux';
 
-export const actionTypes = {
+export const actionsTypes = {
   GET_AUTHOR_INFO: 'GET_AUTHOR_INFO',
+  RESPONSE_AUTHOR_INFO: 'RESPONSE_AUTHOR_INFO',
 };
 
 const initialState = {
   authorName: '',
-  authorProfile: '',
+  profile: '',
   avatar: '',
   occupation: '',
   company: '',
 };
 
 export const actions = {
-  changeLocationAdmin: url => ({
-    type: actionTypes.ADMIN_URL_LOCATION,
-    data: url,
+  getAuthorInfo: () => ({
+    type: actionsTypes.GET_AUTHOR_INFO,
   }),
 };
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.ADMIN_URL_LOCATION:
+    case actionsTypes.RESPONSE_AUTHOR_INFO:
       console.log('action.data', action.data);
       return {
         ...state,
-        url: action.data,
+        authorName: action.data.username,
+        profile: action.data.profile,
+        avatar: action.data.avatar,
+        occupation: action.data.occupation,
+        company: action.data.company,
       };
     default:
       return state;

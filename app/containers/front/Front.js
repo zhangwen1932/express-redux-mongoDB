@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Card, Row, Col, Tag, Divider, Icon,
 } from 'antd';
 
 import styles from './style.less';
 
+import { actions as FrontActions } from '../../reducers/front';
+
 class Front extends Component {
+  componentDidMount() {
+    const { getAuthorInfo } = this.props;
+    getAuthorInfo();
+  }
+
   render() {
-    const avatarImage = 'https://wx2.sinaimg.cn/mw1024/9499f9e8ly1fyhrmm715tj20u00u00ti.jpg';
-    const { children } = this.props;
+    const {
+      children, authorName, profile, avatar, occupation, company,
+    } = this.props;
     const operationTabList = [
       {
         key: 'articles',
@@ -36,18 +46,18 @@ class Front extends Component {
             <Card bordered={false} style={{ marginBottom: 24 }}>
               <div>
                 <div className={styles.avatarHolder}>
-                  <img alt="" src={avatarImage} />
-                  <div className={styles.name}>Wendy</div>
-                  <div>海纳百川，有容乃大</div>
+                  <img alt="" src={avatar} />
+                  <div className={styles.name}>{authorName}</div>
+                  <div>{profile}</div>
                 </div>
                 <div className={styles.detail}>
                   <p>
                     <Icon type="idcard" />
-                    前端工程师
+                    {occupation}
                   </p>
                   <p>
                     <Icon type="cluster" />
-                    酷链科技有限公司
+                    {company}
                   </p>
                   <p>
                     <Icon type="environment" />
@@ -78,4 +88,26 @@ class Front extends Component {
   }
 }
 
-export default Front;
+function mapStateToProps(state) {
+  const {
+    authorName, profile, avatar, occupation, company,
+  } = state.front;
+  return {
+    authorName,
+    profile,
+    avatar,
+    occupation,
+    company,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getAuthorInfo: bindActionCreators(FrontActions.getAuthorInfo, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Front);

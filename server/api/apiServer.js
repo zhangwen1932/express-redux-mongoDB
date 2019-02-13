@@ -28,7 +28,7 @@ app.use(session({
 }));
 
 // 展示页面路由
-// app.use('/', require('./main'));
+app.use('/', require('./main'));
 // 管理页面路由
 app.use('/admin', require('./admin'));
 

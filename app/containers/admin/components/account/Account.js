@@ -68,6 +68,26 @@ class Account extends Component {
                   ],
                 })(<Input />)}
               </FormItem>
+              <FormItem label="职务">
+                {getFieldDecorator('occupation', {
+                  rules: [
+                    {
+                      required: true,
+                      message: '请输入职业',
+                    },
+                  ],
+                })(<Input />)}
+              </FormItem>
+              <FormItem label="公司">
+                {getFieldDecorator('company', {
+                  rules: [
+                    {
+                      required: true,
+                      message: '请输入公司信息',
+                    },
+                  ],
+                })(<Input />)}
+              </FormItem>
               <FormItem label="个人简介">
                 {getFieldDecorator('intro', {
                   rules: [

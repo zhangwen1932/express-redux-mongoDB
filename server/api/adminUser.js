@@ -78,6 +78,25 @@ router.post('/register', (req, res) => {
     });
 });
 
+// router.post('/setting', (req, res) => {
+//   const { email, nickname, profile } = req.body;
+//   if (!email) {
+//     responseClient(res, 400, 2, '邮箱不能为空');
+//     return;
+//   }
+//   if (!nickname) {
+//     responseClient(res, 400, 2, '昵称不能为空');
+//     return;
+//   }
+//   if (!profile) {
+//     responseClient(res, 400, 2, '个人简介不能为空');
+//   }
+//   console.log('req.body', req.body);
+// });
+
+// router.post('/editAvatar', (req, res) => {
+// })
+
 // 用户验证
 router.get('/userInfo', (req, res) => {
   if (req.session.userInfo) {
