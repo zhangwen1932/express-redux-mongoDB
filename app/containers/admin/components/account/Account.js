@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Form, Input, Upload, Button,
 } from 'antd';
-
+import { actions as UserActions } from '../../../../reducers/adminSetting';
 import style from './style.css';
 
 const FormItem = Form.Item;
@@ -27,6 +29,11 @@ const AvatarView = () => (
 );
 
 class Account extends Component {
+  componentDidMount() {
+    const { getAuthor } = this.props;
+    getAuthor();
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const {
@@ -42,6 +49,9 @@ class Account extends Component {
   render() {
     const {
       form: { getFieldDecorator },
+    } = this.props;
+    const {
+      nickname, profile, occupation, company, avatar,
     } = this.props;
     return (
       <div className={style.container}>
@@ -66,6 +76,7 @@ class Account extends Component {
                       message: '请输入昵称',
                     },
                   ],
+                  initialValue: nickname,
                 })(<Input />)}
               </FormItem>
               <FormItem label="职务">
@@ -76,6 +87,7 @@ class Account extends Component {
                       message: '请输入职业',
                     },
                   ],
+                  initialValue: occupation,
                 })(<Input />)}
               </FormItem>
               <FormItem label="公司">
@@ -86,6 +98,7 @@ class Account extends Component {
                       message: '请输入公司信息',
                     },
                   ],
+                  initialValue: company,
                 })(<Input />)}
               </FormItem>
               <FormItem label="个人简介">
@@ -96,6 +109,7 @@ class Account extends Component {
                       message: '请输入个人简介',
                     },
                   ],
+                  initialValue: profile,
                 })(
                   <Input.TextArea
                     placeholder="请输入个人简介"
@@ -109,7 +123,7 @@ class Account extends Component {
             </Form>
           </div>
           <div className={style.right}>
-            <AvatarView />
+            <AvatarView avatar={avatar} />
           </div>
         </div>
       </div>
@@ -119,4 +133,24 @@ class Account extends Component {
 
 const WrappedAccount = Form.create({ name: 'setting' })(Account);
 
-export default WrappedAccount;
+// export default WrappedAccount;
+function mapStateToProps(state) {
+  return {
+    nickname: state.admin.user.nickname,
+    profile: state.admin.user.profile,
+    avatar: state.admin.user.avatar,
+    occupation: state.admin.user.occupation,
+    company: state.admin.user.company,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getAuthor: bindActionCreators(UserActions.getAuthor, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WrappedAccount);

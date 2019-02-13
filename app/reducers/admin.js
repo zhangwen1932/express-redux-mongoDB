@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as newArticle } from './admiNewArticle';
 import { reducer as allArticles } from './adminALLArticles';
+import { reducer as user } from './adminSetting';
 
 export const actionsTypes = {
   ADMIN_URL_LOCATION: 'ADMIN_URL_LOCATION',
@@ -33,6 +34,7 @@ const admin = combineReducers({
   adminGlobalState: reducer,
   newArticle,
   allArticles,
+  user,
 });
 
 export default admin;

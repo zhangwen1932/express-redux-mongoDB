@@ -5,3 +5,4 @@
 获取文章列表(后记得跟参数): '/api/admin/article/getArticles'
 文章详情页: '/api/admin/article/getArticlesDetail'
 用户信息: '/api/getIntro'
+获得用户信息: '/api/admin/user/authorInfo'

@@ -78,24 +78,32 @@ router.post('/register', (req, res) => {
     });
 });
 
-// router.post('/setting', (req, res) => {
-//   const { email, nickname, profile } = req.body;
-//   if (!email) {
-//     responseClient(res, 400, 2, '邮箱不能为空');
-//     return;
-//   }
-//   if (!nickname) {
-//     responseClient(res, 400, 2, '昵称不能为空');
-//     return;
-//   }
-//   if (!profile) {
-//     responseClient(res, 400, 2, '个人简介不能为空');
-//   }
-//   console.log('req.body', req.body);
-// });
+router.post('/updateUserInfor', (req, res) => {
+  console.log(req.body);
+  responseClient(res, 200, 0, 'success');
+});
 
-// router.post('/editAvatar', (req, res) => {
-// })
+router.get('/authorInfo', (req, res) => {
+  if (req.session.userInfo) {
+    const _id = req.session.userInfo.userId;
+    User.findOne({
+      _id,
+    }).then((userInfo) => {
+      const data = {};
+      data.nickname = userInfo.username;
+      data.avatar = userInfo.avatar;
+      data.profile = userInfo.profile;
+      data.company = userInfo.company;
+      data.occupation = userInfo.occupation;
+      responseClient(res, 200, 0, 'success', data);
+    }).catch((err) => {
+      responseClient(res);
+      console.log('err', err);
+    });
+  } else {
+    responseClient(res, 200, 0, 'fail');
+  }
+});
 
 // 用户验证
 router.get('/userInfo', (req, res) => {
