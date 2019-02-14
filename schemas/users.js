@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 
 module.exports = new mongoose.Schema({
   username: String,
+  nickname: String,
   avatar: String,
   email: String,
   profile: String,

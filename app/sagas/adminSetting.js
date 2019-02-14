@@ -1,5 +1,5 @@
 import { put, take, call } from 'redux-saga/effects';
-import { get } from '../fetch/fetch';
+import { get, post } from '../fetch/fetch';
 
 import { actionsTypes as AdminSettingTypes } from '../reducers/adminSetting';
 import { actionsTypes as IndexActionTypes } from '../reducers';
@@ -19,11 +19,33 @@ export function* getAuthorFlow() {
   while (true) {
     yield take(AdminSettingTypes.GET_AUTHOR);
     const res = yield call(getAuthor);
-    if (res) {
-      if (res.code === 0) {
-        console.log('res.data', res.data);
-        yield put({ type: AdminSettingTypes.RESPONSE_GET_AUTHOR, data: res.data });
-      }
+    if (res && res.code === 0) {
+      yield put({ type: AdminSettingTypes.RESPONSE_GET_AUTHOR, data: res.data });
     }
+  }
+}
+
+export function* updateInfo(values) {
+  console.log('values', values);
+  const {
+    nickname, company, occupation, profile,
+  } = values;
+  yield put({ type: IndexActionTypes.FETCH_START });
+  try {
+    return yield call(post, 'admin/user/updateUserInfor', {
+      nickname, company, occupation, profile,
+    });
+  } catch (err) {
+    return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0 });
+  } finally {
+    yield put({ type: IndexActionTypes.FETCH_END });
+  }
+}
+
+export function* updateInfoFlow() {
+  while (true) {
+    const request = yield take(AdminSettingTypes.UPDATE_INFO);
+    const res = yield call(updateInfo, request.values);
+    console.log(res);
   }
 }

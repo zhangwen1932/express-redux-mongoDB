@@ -15,7 +15,7 @@ router.get('/getIntro', (req, res) => {
     if (userInfo) {
       // 查找到该用户
       const data = {};
-      data.username = userInfo.username;
+      data.username = userInfo.nickname;
       data.profile = userInfo.profile;
       data.avatar = userInfo.avatar;
       data.occupation = userInfo.occupation;

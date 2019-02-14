@@ -40,11 +40,12 @@ class Account extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const {
-      form: { validateFieldsAndScroll },
+      form: { validateFields },
     } = this.props;
-    validateFieldsAndScroll((err, values) => {
+    const { updateInfo } = this.props;
+    validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        updateInfo(values);
       }
     });
   }
@@ -54,7 +55,7 @@ class Account extends Component {
       form: { getFieldDecorator },
     } = this.props;
     const {
-      nickname, profile, occupation, company, avatar,
+      nickname, profile, occupation, company, avatar, email,
     } = this.props;
     return (
       <div className={style.container}>
@@ -69,6 +70,7 @@ class Account extends Component {
                       message: '请输入邮箱',
                     },
                   ],
+                  initialValue: email,
                 })(<Input />)}
               </FormItem>
               <FormItem label="昵称">
@@ -105,7 +107,7 @@ class Account extends Component {
                 })(<Input />)}
               </FormItem>
               <FormItem label="个人简介">
-                {getFieldDecorator('intro', {
+                {getFieldDecorator('profile', {
                   rules: [
                     {
                       required: true,
@@ -120,7 +122,7 @@ class Account extends Component {
                   />,
                 )}
               </FormItem>
-              <Button type="primary">
+              <Button type="primary" htmlType="submit">
                 更新基本信息
               </Button>
             </Form>
@@ -144,12 +146,14 @@ function mapStateToProps(state) {
     avatar: state.admin.user.avatar,
     occupation: state.admin.user.occupation,
     company: state.admin.user.company,
+    email: state.admin.user.email,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getAuthor: bindActionCreators(UserActions.getAuthor, dispatch),
+    updateInfo: bindActionCreators(UserActions.updateInfo, dispatch),
   };
 }
 

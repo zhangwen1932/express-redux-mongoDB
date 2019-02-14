@@ -79,8 +79,22 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/updateUserInfor', (req, res) => {
-  console.log(req.body);
-  responseClient(res, 200, 0, 'success');
+  const {
+    nickname, company, occupation, profile,
+  } = req.body;
+  User.update({ _id: req.session.userInfo.userId }, {
+    nickname, company, occupation, profile,
+  }).then(() => {
+    const data = {};
+    data.nickname = nickname;
+    data.company = company;
+    data.occupation = occupation;
+    data.profile = profile;
+    responseClient(res, 200, 0, '更新成功', data);
+  }).cancel((err) => {
+    console.log(err);
+    responseClient(res, 200, 1, 'fail');
+  });
 });
 
 router.get('/authorInfo', (req, res) => {
@@ -90,7 +104,8 @@ router.get('/authorInfo', (req, res) => {
       _id,
     }).then((userInfo) => {
       const data = {};
-      data.nickname = userInfo.username;
+      data.email = userInfo.email;
+      data.nickname = userInfo.nickname;
       data.avatar = userInfo.avatar;
       data.profile = userInfo.profile;
       data.company = userInfo.company;
