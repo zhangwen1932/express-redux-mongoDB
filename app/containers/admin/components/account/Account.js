@@ -10,23 +10,26 @@ import style from './style.css';
 const FormItem = Form.Item;
 
 // 头像组件 方便以后独立，增加裁剪之类的功能
-const AvatarView = () => (
-  <Fragment>
-    <div className={style.avatar_title}>
+const AvatarView = (props) => {
+  const { avatar } = props;
+  return (
+    <Fragment>
+      <div className={style.avatar_title}>
       头像
-    </div>
-    <div className={style.avatar}>
-      <img src="https://wx2.sinaimg.cn/mw1024/9499f9e8ly1fyhrmm715tj20u00u00ti.jpg" alt="avatar" />
-    </div>
-    <Upload fileList={[]}>
-      <div className={style.button_view}>
-        <Button icon="upload">
-          更换头像
-        </Button>
       </div>
-    </Upload>
-  </Fragment>
-);
+      <div className={style.avatar}>
+        <img src={avatar} alt="avatar" />
+      </div>
+      <Upload fileList={[]}>
+        <div className={style.button_view}>
+          <Button icon="upload">
+          更换头像
+          </Button>
+        </div>
+      </Upload>
+    </Fragment>
+  );
+};
 
 class Account extends Component {
   componentDidMount() {
