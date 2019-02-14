@@ -26,7 +26,6 @@ export function* getAuthorFlow() {
 }
 
 export function* updateInfo(values) {
-  console.log('values', values);
   const {
     nickname, company, occupation, profile,
   } = values;
@@ -46,6 +45,11 @@ export function* updateInfoFlow() {
   while (true) {
     const request = yield take(AdminSettingTypes.UPDATE_INFO);
     const res = yield call(updateInfo, request.values);
-    console.log(res);
+    if (res && res.code === 0) {
+      yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '更新成功', msgType: 0 });
+    } else {
+      yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '更新失败', msgType: 1 });
+    }
+    yield put({ type: IndexActionTypes.CLEAR_MESSAGE, msgCOntent: '', msgType: 1 });
   }
 }

@@ -6,3 +6,4 @@
 文章详情页: '/api/admin/article/getArticlesDetail'
 用户信息: '/api/getIntro'
 获得用户信息: '/api/admin/user/authorInfo'
+修改个人信息: '/api/admin/user/updateUserInfor'
