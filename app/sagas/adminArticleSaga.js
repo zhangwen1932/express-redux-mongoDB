@@ -5,11 +5,10 @@ import { actionsTypes as AdminArticleTypes } from '../reducers/adminALLArticles'
 import { actionsTypes as AdminActionTypes } from '../reducers/admiNewArticle';
 import { actionsTypes as IndexActionTypes } from '../reducers';
 
-export function* addArticle(title, content) {
+export function* addArticle(data) {
   yield put({ type: IndexActionTypes.FETCH_START });
-  const isPublish = 'true';
   try {
-    return yield call(post, '/admin/article/addArticle', { title, content, isPublish });
+    return yield call(post, '/admin/article/addArticle', data);
   } catch (error) {
     return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '服务器错误', msgType: 1 });
   } finally {
@@ -20,7 +19,7 @@ export function* addArticle(title, content) {
 export function* addArticleFlow() {
   while (true) {
     const request = yield take(AdminActionTypes.ADD_ARTICLE);
-    const response = yield call(addArticle, request.title, request.content);
+    const response = yield call(addArticle, request.data);
     if (response && response.code === 0) {
       yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '发表文章成功', msgType: 0 });
       yield put({ type: AdminActionTypes.RESPONSE_ADD_ARTICLE, data: response.data });

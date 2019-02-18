@@ -2,6 +2,7 @@ const initialState = {
   id: '',
   title: '',
   content: '',
+  time: '',
 };
 
 export const actionsTypes = {
@@ -10,10 +11,9 @@ export const actionsTypes = {
 };
 
 export const actions = {
-  addArticle: (title, content) => ({
+  addArticle: data => ({
     type: actionsTypes.ADD_ARTICLE,
-    title,
-    content,
+    data,
   }),
 };
 
@@ -23,8 +23,6 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         id: action.data._id,
-        title: '',
-        content: '',
       };
     default:
       return state;

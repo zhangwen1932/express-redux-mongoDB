@@ -39,13 +39,12 @@ class Admin extends Component {
               <Layout className={style.layout}>
                 <Sider>
                   <Menu
-                    defaultSelectedKeys={['/admin']}
-                    defaultOpenKeys={['sub1']}
+                    defaultSelectedKeys={['/account']}
                     mode="inline"
                     theme="dark"
                     onClick={this.handleChangeURL}
                   >
-                    <Menu.Item key="/admin">
+                    <Menu.Item key="/account">
                       <Icon type="setting" />
                       <span>个人设置</span>
                     </Menu.Item>
@@ -67,6 +66,7 @@ class Admin extends Component {
                   <Content>
                     <Switch>
                       <Route exact path="/admin" component={Account} />
+                      <Route exact path="/admin/account" component={Account} />
                       <Route path="/admin/articleList" component={ArticleList} />
                       <Route path="/admin/newArticle" component={NewArticle} />
                       <Route exact path="/admin/projects" component={ProjectsList} />

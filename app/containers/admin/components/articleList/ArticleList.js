@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 
-import { List } from 'antd';
+import { Table } from 'antd';
 
 import { actions as ArticleActions } from '../../../../reducers/adminALLArticles';
 import style from './style.css';
@@ -17,31 +17,26 @@ class ArticleList extends Component {
   render() {
     const { articles } = this.props;
     const articleUrl = 'http://localhost:9100/adminArticle?id=';
+    const columns = [{
+      title: '文章标题',
+      dataIndex: 'title',
+    }, {
+      title: '发表时间',
+      dataIndex: 'time',
+    }, {
+      title: 'Action',
+      dataIndex: '',
+      width: 360,
+      render: record => (
+        <span>
+          <a href={articleUrl + `${record._id}`}>查看</a>
+        </span>
+      ),
+    }];
     return (
       <div className={style.container}>
         <div className={style.box}>
-          <List
-            itemLayout="vertical"
-            size="large"
-            pagination={{
-              pageSize: 5,
-            }}
-            dataSource={articles}
-            renderItem={item => (
-              <List.Item
-                key={item.title}
-                extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
-              >
-                <List.Item.Meta
-                  title={<a href={articleUrl + item._id}>{item.title}</a>}
-                  description={item.description}
-                />
-                <div className={style.content}>
-                  {item.content}
-                </div>
-              </List.Item>
-            )}
-          />
+          <Table columns={columns} dataSource={articles} />
         </div>
       </div>
     );

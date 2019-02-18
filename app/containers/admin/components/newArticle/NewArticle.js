@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import dateFormat from 'dateformat';
 
 import { actions } from '../../../../reducers/admiNewArticle';
 import { actions as AdminActions } from '../../../../reducers/admin';
@@ -14,8 +15,8 @@ class AddArticle extends Component {
   componentDidUpdate() {
     const { id, history, changeLocationAdmin } = this.props;
     if (id) {
-      changeLocationAdmin(`/article?id=${id}`);
-      history.push(`/article?id=${id}`);
+      changeLocationAdmin(`/adminArticle?id=${id}`);
+      history.push(`/adminArticle?id=${id}`);
     }
   }
 
@@ -25,7 +26,12 @@ class AddArticle extends Component {
     form.validateFields((err, values) => {
       if (!err) {
         const { addArticle } = this.props;
-        addArticle(values.title, values.content);
+        const data = {};
+        data.title = values.title;
+        data.content = values.content;
+        data.isPublish = true;
+        data.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+        addArticle(data);
       }
     });
   }

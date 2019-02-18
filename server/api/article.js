@@ -5,19 +5,15 @@ import { responseClient } from '../util';
 const router = Express.Router();
 
 router.post('/addArticle', (req, res) => {
-  const { title, content, isPublish } = req.body;
-  if (!title) {
-    responseClient(res, 200, 2, '标题不可为空');
-    return;
-  }
-  if (!content) {
-    responseClient(res, 200, 2, '文章内容不可为空');
-  }
+  const {
+    title, content, isPublish, time,
+  } = req.body;
   // 添加文章
   const article = new Article({
     title,
     content,
     isPublish,
+    time,
   });
   article.save().then((data) => {
     responseClient(res, 200, 0, '发表文章成功', data);
@@ -37,7 +33,7 @@ router.get('/getArticles', (req, res) => {
   Article.countDocuments(searchCondition)
     .then((total) => {
       responseData.total = total;
-      Article.find(searchCondition, '_id title content isPublish')
+      Article.find(searchCondition, '_id title content isPublish time')
         .then((result) => {
           responseData.list = result;
           responseClient(res, 200, 0, 'success', responseData);
