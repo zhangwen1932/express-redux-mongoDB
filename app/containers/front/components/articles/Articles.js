@@ -14,6 +14,7 @@ class Articles extends Component {
 
   render() {
     const { articles } = this.props;
+    const articleUrl = 'http://localhost:9100/article?id=';
     const IconText = ({ type, text }) => (
       <span>
         <Icon type={type} style={{ marginRight: 8 }} />
@@ -37,7 +38,7 @@ class Articles extends Component {
           >
             <List.Item.Meta
               title={(
-                <a href={item.href}>
+                <a href={articleUrl + item._id}>
                   {item.title}
                 </a>
               )}

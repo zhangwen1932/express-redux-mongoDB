@@ -13,6 +13,7 @@ import Admin from './admin/Admin';
 import Front from './front/Front';
 import NotFound from './notFound/NotFound';
 import AdminArticle from './adminArticle/Article';
+import Article from './article/Article';
 
 const { userAuth } = actions;
 
@@ -37,6 +38,7 @@ class IndexApp extends Component {
             <Route path="/admin" component={Admin} />
             <Route path="/404" component={NotFound} />
             <Route path="/adminArticle" component={AdminArticle} />
+            <Route path="/article" component={Article} />
             <Route component={Front} />
           </Switch>
         </React.Fragment>

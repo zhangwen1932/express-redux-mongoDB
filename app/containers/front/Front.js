@@ -35,7 +35,7 @@ class Front extends Component {
     } = this.props;
     const operationTabList = [
       {
-        key: '/articles',
+        key: '/articleslist',
         tab: (
           <span>
             文章
@@ -100,7 +100,7 @@ class Front extends Component {
             >
               <Switch>
                 <Route exact path="/" component={Articles} />
-                <Route path="/articles" component={Articles} />
+                <Route path="/articleslist" component={Articles} />
                 <Route path="/projects" component={Projects} />
               </Switch>
             </Card>
