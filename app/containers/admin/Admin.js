@@ -39,12 +39,12 @@ class Admin extends Component {
               <Layout className={style.layout}>
                 <Sider>
                   <Menu
-                    defaultSelectedKeys={['/account']}
+                    defaultSelectedKeys={['/admin/account']}
                     mode="inline"
                     theme="dark"
                     onClick={this.handleChangeURL}
                   >
-                    <Menu.Item key="/account">
+                    <Menu.Item key="/admin/account">
                       <Icon type="setting" />
                       <span>个人设置</span>
                     </Menu.Item>
