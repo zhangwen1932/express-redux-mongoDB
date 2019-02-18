@@ -11,6 +11,7 @@ import {
 
 import Articles from './components/articles/Articles';
 import Projects from './components/projects/Projects';
+import Article from './components/article/Article';
 
 import styles from './style.less';
 
@@ -92,18 +93,29 @@ class Front extends Component {
             </Card>
           </Col>
           <Col lg={17} md={24}>
-            <Card
-              className={styles.tabsCard}
-              bordered={false}
-              tabList={operationTabList}
-              onTabChange={(key) => { this.onTabChange(key, 'key'); }}
-            >
-              <Switch>
-                <Route exact path="/" component={Articles} />
-                <Route path="/articleslist" component={Articles} />
-                <Route path="/projects" component={Projects} />
-              </Switch>
-            </Card>
+            {window.location.pathname !== '/article'
+              ? (
+                <Card
+                  className={styles.tabsCard}
+                  bordered={false}
+                  tabList={operationTabList}
+                  onTabChange={(key) => { this.onTabChange(key, 'key'); }}
+                >
+                  <Switch>
+                    <Route exact path="/" component={Articles} />
+                    <Route path="/articleslist" component={Articles} />
+                    <Route path="/projects" component={Projects} />
+                  </Switch>
+                </Card>
+              )
+              : (
+                <Card
+                  bordered={false}
+                >
+                  <Article />
+                </Card>
+              )
+          }
           </Col>
         </Row>
       </div>

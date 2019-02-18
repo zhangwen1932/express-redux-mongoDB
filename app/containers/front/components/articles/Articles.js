@@ -44,6 +44,7 @@ class Articles extends Component {
               )}
             />
             <ArticleListContent data={item} />
+            {console.log('item', item)}
           </List.Item>
         )}
       />
