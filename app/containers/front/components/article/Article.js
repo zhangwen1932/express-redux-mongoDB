@@ -9,7 +9,6 @@ class Article extends Component {
   componentDidMount() {
     const { getArticle } = this.props;
     const id = window.location.href.split('=')[1];
-    console.log('id', id);
     getArticle(id);
   }
 
