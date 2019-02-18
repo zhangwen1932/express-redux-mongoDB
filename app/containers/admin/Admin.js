@@ -31,6 +31,7 @@ class Admin extends Component {
     const {
       Content, Sider,
     } = Layout;
+    const { pathname } = window.location;
     return (
       <div className={style.container}>
         {
@@ -40,6 +41,7 @@ class Admin extends Component {
                 <Sider>
                   <Menu
                     defaultSelectedKeys={['/admin/account']}
+                    selectedKeys={[pathname]}
                     mode="inline"
                     theme="dark"
                     onClick={this.handleChangeURL}
