@@ -42,7 +42,6 @@ class Articles extends Component {
           <List.Item
             key={item.id}
             actions={[
-              <IconText type="star-o" text="156" />,
               <IconText type="like-o" text="233" />,
               <IconText type="message" text="233" />,
             ]}

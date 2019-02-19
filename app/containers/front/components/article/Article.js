@@ -22,7 +22,7 @@ class Article extends Component {
           </Breadcrumb.Item>
           <Breadcrumb.Item>
             <Icon type="file-text" />
-            <span>文章详情</span>
+            <span>{title}</span>
           </Breadcrumb.Item>
         </Breadcrumb>
         <Divider />
