@@ -49,7 +49,7 @@ class Articles extends Component {
           >
             <List.Item.Meta
               title={(
-                <a href={articleUrl + item._id}>
+                <a href={articleUrl + item.id}>
                   {item.title}
                 </a>
               )}

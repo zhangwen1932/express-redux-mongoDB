@@ -13,7 +13,7 @@ class Article extends Component {
   }
 
   render() {
-    const { title, content } = this.props;
+    const { title, content, time } = this.props;
     return (
       <Fragment>
         <Breadcrumb>
@@ -27,6 +27,8 @@ class Article extends Component {
         </Breadcrumb>
         <Divider />
         <h1>{title}</h1>
+        <em>{time}</em>
+        <br />
         {content}
       </Fragment>
     );
@@ -34,10 +36,11 @@ class Article extends Component {
 }
 
 function mapStateToProps(state) {
-  const { title, content } = state.article;
+  const { title, content, time } = state.article;
   return {
     title,
     content,
+    time,
   };
 }
 

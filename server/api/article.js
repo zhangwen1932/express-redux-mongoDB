@@ -47,7 +47,7 @@ router.get('/getArticles', (req, res) => {
 
 router.get('/getArticlesDetail', (req, res) => {
   const { id } = req.query;
-  Article.findOne({ _id: id }, '_id title content isPublish')
+  Article.findOne({ _id: id }, '_id title content isPublish time')
     .then((result) => {
       responseClient(res, 200, 0, 'success', result);
     }).cancel((err) => {

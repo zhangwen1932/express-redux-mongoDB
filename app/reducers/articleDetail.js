@@ -1,6 +1,7 @@
 const initialState = {
   title: '',
   content: '',
+  time: '',
 };
 
 export const actionsTypes = {
@@ -22,6 +23,7 @@ export function reducer(state = initialState, action) {
         ...state,
         title: action.data.title,
         content: action.data.content,
+        time: action.data.time,
       };
     default:
       return state;
