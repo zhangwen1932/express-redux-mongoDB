@@ -29,7 +29,7 @@ class ArticleList extends Component {
       width: 360,
       render: record => (
         <span>
-          <a href={articleUrl + `${record._id}`}>查看</a>
+          <a href={articleUrl + `${record.id}`}>查看</a>
         </span>
       ),
     }];
@@ -44,8 +44,20 @@ class ArticleList extends Component {
 }
 
 function mapStateToProps(state) {
+  const { articles } = state.admin.allArticles;
+  const data = [];
+  articles.forEach((item, index) => {
+    const article = {};
+    article.key = index;
+    article.id = item._id;
+    article.title = item.title;
+    article.content = item.content;
+    article.time = item.time;
+    data.push(article);
+  });
+  data.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
   return {
-    articles: state.admin.allArticles.articles,
+    articles: data,
   };
 }
 
