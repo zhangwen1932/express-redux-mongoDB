@@ -21,12 +21,23 @@ class Articles extends Component {
         {text}
       </span>
     );
+    articles.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
+    const data = [];
+    articles.forEach((item, index) => {
+      const article = {};
+      article.key = index;
+      article.id = item._id;
+      article.title = item.title;
+      article.content = item.content;
+      article.description = item.time;
+      data.push(article);
+    });
     return (
       <List
         size="large"
         rowKey="id"
         itemLayout="vertical"
-        dataSource={articles}
+        dataSource={data}
         renderItem={item => (
           <List.Item
             key={item.id}
@@ -42,6 +53,7 @@ class Articles extends Component {
                   {item.title}
                 </a>
               )}
+              description={item.description}
             />
             <ArticleListContent data={item} />
           </List.Item>

@@ -125,7 +125,7 @@ class Front extends Component {
 
 function mapStateToProps(state) {
   const {
-    authorName, profile, avatar, occupation, company, total, articles,
+    authorName, profile, avatar, occupation, company, total,
   } = state.front;
   return {
     authorName,
@@ -134,7 +134,6 @@ function mapStateToProps(state) {
     occupation,
     company,
     total,
-    articles,
   };
 }
 
