@@ -1,18 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { Divider, Icon } from 'antd';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import { actions as FrontActions } from '../../../../reducers/front';
 import style from './style.css';
 
 class ArticleCell extends Component {
   constructor(props) {
     super(props);
-    const { item } = this.props;
     this.state = {
       disabled: true,
-      like: item.likeCount,
     };
   }
 
@@ -24,7 +19,6 @@ class ArticleCell extends Component {
       addLike(key, data);
       this.setState({
         disabled: false,
-        like: data,
       });
       return false;
     }
@@ -40,24 +34,24 @@ class ArticleCell extends Component {
         {text}
       </span>
     );
-    const { like, disabled } = this.state;
+    const { disabled } = this.state;
     return (
       <Fragment>
         <div>
           <h3>
-            <a href={articleUrl + item.id}>{item.title}</a>
+            <a href={articleUrl + item.id} className={style.title}>{item.title}</a>
           </h3>
-          <span>
-            {item.description}
+          <span className={style.time}>
+            {item.time}
           </span>
-          <p>{item.content}</p>
+          <p className={style.content}>{item.content}</p>
           <div onClick={() => this.handleLike(item.id, item.likeCount)}>
             {disabled
               ? <IconText type="like-o" text={item.likeCount} />
               : (
                 <div className={style.like}>
                   <Icon type="like-o" className={style.star} />
-                  <span>{like}</span>
+                  <span>{item.likeCount}</span>
                 </div>
               )}
           </div>
@@ -68,23 +62,4 @@ class ArticleCell extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const {
-    total, articles,
-  } = state.front;
-  return {
-    total,
-    articles,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    addLike: bindActionCreators(FrontActions.addLike, dispatch),
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ArticleCell);
+export default ArticleCell;

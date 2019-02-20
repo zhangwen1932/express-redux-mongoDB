@@ -4,3 +4,13 @@
 .star{
   margin-right:8px;
 }
+.title{
+  color:#444;
+}
+.time{
+  font-size:12px;
+  color:#aaa;
+}
+.content{
+  padding-top:1rem;
+}

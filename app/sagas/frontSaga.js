@@ -47,8 +47,6 @@ export function* getAutorArticlesFlow() {
 }
 
 export function* addLike(id, likeCount) {
-  console.log('id', id);
-  console.log('count', likeCount);
   yield put({ type: IndexActionTypes.FETCH_START });
   try {
     return yield call(post, '/addLike', { id, likeCount });
@@ -65,7 +63,6 @@ export function* addLikeFlow() {
     const response = yield call(addLike, request.id, request.likeCount);
     if (response && response.code === 0) {
       const responseData = yield call(getAuthorArticles);
-      console.log('data', responseData);
       yield put({ type: FrontActionTypes.RESPONSE_ADD_LIKE, data: responseData.data.list });
     }
   }

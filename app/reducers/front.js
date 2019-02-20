@@ -57,7 +57,6 @@ export function reducer(state = initialState, action) {
         total: action.data.total,
       };
     case actionsTypes.RESPONSE_ADD_LIKE:
-      console.log(action);
       return {
         ...state,
         articles: [...action.data],
