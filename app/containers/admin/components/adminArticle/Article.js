@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import style from './style.css';
 import Banner from './components/adminBanner/AdminBanner';
 
-import { actions } from '../../reducers/articleDetail';
+import { actions } from '../../../../reducers/articleDetail';
 
 class Article extends Component {
   componentDidMount() {
