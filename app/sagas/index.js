@@ -3,7 +3,7 @@ import { loginFlow, userAuth } from './adminSaga';
 import { addArticleFlow, getArticleListFlow } from './adminArticleSaga';
 import { getArticleFlow } from './articleSaga';
 import { getAuthorFlow, updateInfoFlow } from './adminSetting';
-import { getAutorInfoFlow, getAutorArticlesFlow } from './frontSaga';
+import { getAutorInfoFlow, getAutorArticlesFlow, addLikeFlow } from './frontSaga';
 
 export default function* rootSaga() {
   yield fork(loginFlow);
@@ -15,4 +15,5 @@ export default function* rootSaga() {
   yield fork(getAutorArticlesFlow);
   yield fork(getAuthorFlow);
   yield fork(updateInfoFlow);
+  yield fork(addLikeFlow);
 }

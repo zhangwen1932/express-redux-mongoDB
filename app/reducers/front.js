@@ -6,6 +6,8 @@ export const actionsTypes = {
   GET_AUTHOR_ARTICLES: 'GET_AUTHOR_ARTICLES',
   RESPONSE_AUTHOR_ARTICLES: 'RESPONSE_AUTHOR_ARTICLES',
   URL_LOCATION: 'URL_LOCATION',
+  ADD_LIKE: 'ADD_LIKE',
+  RESPONSE_ADD_LIKE: 'RESPONSE_ADD_LIKE',
 };
 
 const initialState = {
@@ -30,6 +32,11 @@ export const actions = {
   getAuthorArticles: () => ({
     type: actionsTypes.GET_AUTHOR_ARTICLES,
   }),
+  addLike: (id, likeCount) => ({
+    type: actionsTypes.ADD_LIKE,
+    id,
+    likeCount,
+  }),
 };
 
 export function reducer(state = initialState, action) {
@@ -48,6 +55,12 @@ export function reducer(state = initialState, action) {
         ...state,
         articles: [...action.data.list],
         total: action.data.total,
+      };
+    case actionsTypes.RESPONSE_ADD_LIKE:
+      console.log(action);
+      return {
+        ...state,
+        articles: [...action.data],
       };
     default:
       return state;

@@ -50,4 +50,16 @@ router.get('/getAuthorArticles', (req, res) => {
     });
 });
 
+router.post('/addLike', (req, res) => {
+  const { id, likeCount } = req.body;
+  Article.update({ _id: id }, { likeCount })
+    .then(() => {
+      const data = {};
+      data.likeCount = likeCount;
+      responseClient(res, 200, 0, 'success', data);
+    }).cancel((err) => {
+      console.log('err', err);
+    });
+});
+
 module.exports = router;
