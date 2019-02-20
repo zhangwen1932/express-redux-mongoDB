@@ -5,11 +5,33 @@ import { List, Icon } from 'antd';
 
 import ArticleListContent from './ArticleContent';
 import { actions as FrontActions } from '../../../../reducers/front';
+import style from './style.css';
 
 class Articles extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      like: 0,
+      disabled: true,
+    };
+  }
+
   componentDidMount() {
     const { getAuthorArticles } = this.props;
     getAuthorArticles();
+  }
+
+  handleLike = (e) => {
+    const { like, disabled } = this.state;
+    if (disabled) {
+      const data = like + 1;
+      this.setState({
+        like: data,
+        disabled: false,
+      });
+    } else {
+      e.preventDefault();
+    }
   }
 
   render() {
@@ -30,8 +52,10 @@ class Articles extends Component {
       article.title = item.title;
       article.content = item.content;
       article.description = item.time;
+      article.likeCount = item.likeCount;
       data.push(article);
     });
+    const { like, disabled } = this.state;
     return (
       <List
         size="large"
@@ -42,7 +66,16 @@ class Articles extends Component {
           <List.Item
             key={item.id}
             actions={[
-              <IconText type="like-o" text="233" />,
+              <div onClick={this.handleLike}>
+                {disabled
+                  ? <IconText type="like-o" text={like} />
+                  : (
+                    <div className={style.like}>
+                      <Icon type="like-o" className={style.star} />
+                      <span>{like}</span>
+                    </div>
+                  )}
+              </div>,
               <IconText type="message" text="233" />,
             ]}
           >

@@ -12,7 +12,7 @@ import { actions } from '../reducers';
 import Admin from './admin/Admin';
 import Front from './front/Front';
 import NotFound from './notFound/NotFound';
-import AdminArticle from './admin/components/adminArticle/Article';
+import AdminArticle from './admin/components/ArticleDetail/Article';
 
 const { userAuth } = actions;
 

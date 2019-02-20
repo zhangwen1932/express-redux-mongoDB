@@ -30,6 +30,7 @@ class AddArticle extends Component {
         data.title = values.title;
         data.content = values.content;
         data.isPublish = true;
+        data.likeCount = 0;
         data.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
         addArticle(data);
       }

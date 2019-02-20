@@ -38,7 +38,7 @@ router.get('/getAuthorArticles', (req, res) => {
   Article.countDocuments(searchCondition)
     .then((total) => {
       responseData.total = total;
-      Article.find(searchCondition, '_id title content isPublish time')
+      Article.find(searchCondition, '_id title content isPublish time likeCount')
         .then((result) => {
           responseData.list = result;
           responseClient(res, 200, 0, 'success', responseData);
