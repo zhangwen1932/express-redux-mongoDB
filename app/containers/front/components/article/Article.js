@@ -1,7 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Breadcrumb, Icon, Divider } from 'antd';
+import {
+  Breadcrumb, Icon, Divider, Card,
+} from 'antd';
 
 import { actions as Frontactions } from '../../../../reducers/articleDetail';
 import style from './style.css';
@@ -16,7 +18,7 @@ class Article extends Component {
   render() {
     const { title, content, time } = this.props;
     return (
-      <Fragment>
+      <Card bordered={false}>
         <Breadcrumb>
           <Breadcrumb.Item href="http://localhost:9100/">
             <Icon type="home" />
@@ -35,19 +37,19 @@ class Article extends Component {
         <p>评论</p>
         <div className={style.comment}>
           <div>
-            邮箱:
+              邮箱:
             <input />
           </div>
           <div>
-            昵称:
+              昵称:
             <input />
           </div>
           <div>
-            评论:
+              评论:
             <textarea />
           </div>
         </div>
-      </Fragment>
+      </Card>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {
-  Card, Row, Col,
+  Row, Col,
 } from 'antd';
 
 import Article from './components/article/Article';
@@ -25,11 +25,7 @@ class Front extends Component {
                 <Home />
               )
               : (
-                <Card
-                  bordered={false}
-                >
-                  <Article />
-                </Card>
+                <Article />
               )
           }
           </Col>
