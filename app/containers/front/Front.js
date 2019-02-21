@@ -6,12 +6,14 @@ import {
   Route,
 } from 'react-router-dom';
 import {
-  Card, Row, Col, Tag, Divider, Icon,
+  Card, Row, Col,
 } from 'antd';
 
 import Articles from './components/articles/Articles';
 import Projects from './components/projects/Projects';
 import Article from './components/article/Article';
+import Sidebar from './components/sidebar/Sidebar';
+
 
 import styles from './style.less';
 
@@ -19,8 +21,7 @@ import { actions as FrontActions } from '../../reducers/front';
 
 class Front extends Component {
   componentDidMount() {
-    const { getAuthorInfo, getAuthorArticles } = this.props;
-    getAuthorInfo();
+    const { getAuthorArticles } = this.props;
     getAuthorArticles();
   }
 
@@ -32,7 +33,7 @@ class Front extends Component {
 
   render() {
     const {
-      authorName, profile, avatar, occupation, company, total,
+      total,
     } = this.props;
     const operationTabList = [
       {
@@ -62,35 +63,7 @@ class Front extends Component {
       <div className={styles.container}>
         <Row gutter={24}>
           <Col lg={7} md={24}>
-            <Card bordered={false} style={{ marginBottom: 24 }}>
-              <div>
-                <div className={styles.avatarHolder}>
-                  <img alt="" src={avatar} />
-                  <div className={styles.name}>{authorName}</div>
-                  <div>{profile}</div>
-                </div>
-                <div className={styles.detail}>
-                  <p>
-                    <Icon type="idcard" />
-                    {occupation}
-                  </p>
-                  <p>
-                    <Icon type="cluster" />
-                    {company}
-                  </p>
-                  <p>
-                    <Icon type="environment" />
-                    浙江省杭州市
-                  </p>
-                </div>
-                <Divider dashed />
-                <div className={styles.tags}>
-                  <div className={styles.tagsTitle}>标签</div>
-                  <Tag key="smart">很有想法</Tag>
-                </div>
-                <Divider style={{ marginTop: 16 }} dashed />
-              </div>
-            </Card>
+            <Sidebar />
           </Col>
           <Col lg={17} md={24}>
             {window.location.pathname !== '/article'
@@ -125,21 +98,15 @@ class Front extends Component {
 
 function mapStateToProps(state) {
   const {
-    authorName, profile, avatar, occupation, company, total,
+    total,
   } = state.front;
   return {
-    authorName,
-    profile,
-    avatar,
-    occupation,
-    company,
     total,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAuthorInfo: bindActionCreators(FrontActions.getAuthorInfo, dispatch),
     getAuthorArticles: bindActionCreators(FrontActions.getAuthorArticles, dispatch),
     changeLocation: bindActionCreators(FrontActions.changeLocation, dispatch),
   };
