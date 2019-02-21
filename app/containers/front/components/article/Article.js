@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Breadcrumb, Icon, Divider } from 'antd';
 
 import { actions as Frontactions } from '../../../../reducers/articleDetail';
+import style from './style.css';
 
 class Article extends Component {
   componentDidMount() {
@@ -26,10 +27,26 @@ class Article extends Component {
           </Breadcrumb.Item>
         </Breadcrumb>
         <Divider />
-        <h1>{title}</h1>
-        <em>{time}</em>
-        <br />
-        {content}
+        <article>
+          <header><h2>{title}</h2></header>
+          <div className={style.time}>{time}</div>
+          <section><p>{content}</p></section>
+        </article>
+        <p>评论</p>
+        <div className={style.comment}>
+          <div>
+            邮箱:
+            <input />
+          </div>
+          <div>
+            昵称:
+            <input />
+          </div>
+          <div>
+            评论:
+            <textarea />
+          </div>
+        </div>
       </Fragment>
     );
   }
