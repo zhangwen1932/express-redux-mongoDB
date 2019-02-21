@@ -45,15 +45,21 @@ class ArticleCell extends Component {
             {item.time}
           </span>
           <p className={style.content}>{item.content}</p>
-          <div onClick={() => this.handleLike(item.id, item.likeCount)}>
-            {disabled
-              ? <IconText type="like-o" text={item.likeCount} />
-              : (
-                <div className={style.like}>
-                  <Icon type="like-o" className={style.star} />
-                  <span>{item.likeCount}</span>
-                </div>
-              )}
+          <div className={style.action}>
+            <div className={style.likeButton} onClick={() => this.handleLike(item.id, item.likeCount)}>
+              {disabled
+                ? <IconText type="like-o" text={item.likeCount} />
+                : (
+                  <div className={style.like}>
+                    <Icon type="like-o" className={style.star} />
+                    <span>{item.likeCount}</span>
+                  </div>
+                )}
+            </div>
+            |
+            <div className={style.commentButton}>
+              <IconText type="message" text="2" />
+            </div>
           </div>
         </div>
         <Divider />

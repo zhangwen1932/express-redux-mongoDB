@@ -8,7 +8,6 @@ router.post('/addArticle', (req, res) => {
   const {
     title, content, isPublish, time, likeCount,
   } = req.body;
-  console.log('req.body', req.body);
   // 添加文章
   const article = new Article({
     title,

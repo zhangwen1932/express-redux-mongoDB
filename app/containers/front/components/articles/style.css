@@ -14,3 +14,14 @@
 .content{
   padding-top:1rem;
 }
+.action{
+  display: flex;
+  flex-direction: row;
+  color:#aaa;
+}
+.likeButton{
+  margin: 0 8px;
+}
+.commentButton{
+  margin: 0 8px;
+}
