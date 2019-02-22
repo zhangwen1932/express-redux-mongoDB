@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-
+import {
+  Switch,
+  Route,
+} from 'react-router-dom';
 import {
   Row, Col,
 } from 'antd';
@@ -20,14 +23,11 @@ class Front extends Component {
             <Sidebar />
           </Col>
           <Col lg={17} md={24}>
-            {window.location.pathname !== '/article'
-              ? (
-                <Home />
-              )
-              : (
-                <Article />
-              )
-          }
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/article" component={Article} />
+              <Route path="/home" component={Home} />
+            </Switch>
           </Col>
         </Row>
       </div>
