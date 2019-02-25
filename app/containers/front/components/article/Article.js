@@ -34,7 +34,7 @@ class Article extends Component {
           <div className={style.time}>{time}</div>
           <section><p>{content}</p></section>
         </article>
-        <p>评论</p>
+        <Divider orientation="left">评论</Divider>
         <div className={style.comment}>
           <div>
               邮箱:
