@@ -24,8 +24,8 @@ class Front extends Component {
           </Col>
           <Col lg={17} md={24}>
             <Switch>
-              <Route path="/" exact component={Home} />
               <Route path="/article" component={Article} />
+              <Route path="/" component={Home} />
               <Route path="/home" component={Home} />
             </Switch>
           </Col>
