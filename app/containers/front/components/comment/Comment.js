@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import {
   Form, Button, Input, Row, Col,
 } from 'antd';
+import { actions as CommentActions } from '../../../../reducers/articleComment';
 // import moment from 'moment';
 
 const { TextArea } = Input;
@@ -10,7 +13,9 @@ class SubmitComment extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const thistime = new Date();
+    const { addComment } = this.props;
     const { form: { validateFieldsAndScroll } } = this.props;
+    const id = window.location.href.split('id=')[1];
     validateFieldsAndScroll((err, values) => {
       if (!err) {
         const data = {};
@@ -18,7 +23,9 @@ class SubmitComment extends Component {
         data.email = values.email;
         data.comments = values.comments;
         data.thistime = thistime;
+        data.id = id;
         console.log('data', data);
+        addComment(data);
       }
     });
   }
@@ -84,5 +91,25 @@ class SubmitComment extends Component {
   }
 }
 
-const WrappedComment = Form.create({ name: 'comment' })(SubmitComment);
-export default WrappedComment;
+// const WrappedComment = Form.create({ name: 'comment' })(SubmitComment);
+// export default WrappedComment;
+
+function mapStateToProps(state) {
+  const { author, content, time } = state.comment;
+  return {
+    author,
+    content,
+    time,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addComment: bindActionCreators(CommentActions.addComment, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Form.create({ name: 'comment' })(SubmitComment));

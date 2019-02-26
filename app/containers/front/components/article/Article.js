@@ -38,7 +38,7 @@ class Article extends Component {
         </article>
         <Divider>评论</Divider>
         <div className={style.comment}>
-          <Comment content={content} />
+          <Comment />
         </div>
         <Divider />
         <CommentList />
