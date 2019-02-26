@@ -6,14 +6,13 @@ import { responseClient } from '../util';
 const router = Express.Router();
 
 router.post('/addComment', (req, res) => {
-  console.log('req', req.body);
   const {
-    email, content, articleId, nickname, time,
+    email, comments, id, nickname, thistime,
   } = req.body;
   const comment = new Comment({
-    articleId,
-    content,
-    time,
+    articleId: id,
+    content: comments,
+    time: thistime,
   });
   const user = new User({
     nickname,
