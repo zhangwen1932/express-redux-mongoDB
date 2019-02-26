@@ -3,6 +3,7 @@ import User from '../../models/user';
 import { responseClient, md5 } from '../util';
 
 const router = Express.Router();
+
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
   if (!username) {

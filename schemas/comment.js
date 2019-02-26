@@ -4,7 +4,9 @@
 import mongoose from 'mongoose';
 
 module.exports = new mongoose.Schema({
-  author: String, // 文章标题
-  content: String, // 文章内容
-  postId: String, // 浏览次数
+  nickname: String, // 评论者
+  email: String, // 评论者邮箱
+  content: String, // 评论内容
+  articleId: String, // 文章ID
+  time: String, // 评论时间
 });

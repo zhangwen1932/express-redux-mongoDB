@@ -6,7 +6,7 @@ import connectHistoryApiFallback from 'connect-history-api-fallback';
 import config from '../config/config';
 
 const app = new Express();
-const port = config;
+const { port } = config;
 
 const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
 const proxy = httpProxy.createProxyServer({
