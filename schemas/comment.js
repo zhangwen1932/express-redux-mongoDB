@@ -8,5 +8,6 @@ module.exports = new mongoose.Schema({
   email: String, // 评论者邮箱
   content: String, // 评论内容
   articleId: String, // 文章ID
+  userId: String, // 用户ID
   time: String, // 评论时间
 });
