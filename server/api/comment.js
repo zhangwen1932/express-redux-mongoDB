@@ -24,7 +24,7 @@ router.post('/addComment', (req, res) => {
             data.content = comment.content;
             data.time = comment.time;
             data.author = nickname;
-            responseClient(res, 200, 0, 'success', data);
+            responseClient(res, 200, 0, 'success');
           }).catch((err) => {
             console.log(err);
           });
@@ -54,19 +54,42 @@ router.post('/addComment', (req, res) => {
         }).catch((err) => {
           console.log(err);
         });
-      responseClient(res, 200, 0, 'success', '存储了用户和评论');
+      responseClient(res, 200, 0, 'success');
     }).catch((err) => {
       console.log('err', err);
     });
 });
 
 router.get('/getCommentList', (req, res) => {
-  const { articleId } = req.query;
-  console.log('articleId', articleId);
+  // const { articleId } = req.query;
+  // console.log('articleId', articleId);
   const searchCondition = req.query;
-  Comment.find(searchCondition, '_id content time')
+  Comment.find(searchCondition, '_id content time userId')
     .then((result) => {
-      responseClient(res, 200, 0, 'success', result);
+      console.log(result);
+      if (result && result.length > 0) {
+        const userIds = result.map(item => item.userId);
+        console.log(userIds);
+        User.find({ _id: userIds }).then((rawUsers) => {
+          const users = {};
+          rawUsers.forEach((r) => {
+            users[r._id.toString()] = r;
+          });
+          console.log(users);
+          const data = result.map((r) => {
+            console.log(r.userId);
+            return {
+              id: r._id,
+              nickname: users[r.userId] && users[r.userId].nickname,
+              content: r.content,
+              time: r.time,
+            };
+          });
+          responseClient(res, 200, 0, 'success', data);
+        });
+      } else {
+        responseClient(res, 200, 0, 'success', '暂无评论');
+      }
     }).cancel((err) => {
       console.log('err', err);
     });
