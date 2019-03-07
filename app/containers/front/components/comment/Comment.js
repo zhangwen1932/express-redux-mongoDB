@@ -5,7 +5,6 @@ import {
   Form, Button, Input, Row, Col,
 } from 'antd';
 import { actions as CommentActions } from '../../../../reducers/articleComment';
-// import moment from 'moment';
 
 const { TextArea } = Input;
 
@@ -90,9 +89,6 @@ class SubmitComment extends Component {
     );
   }
 }
-
-// const WrappedComment = Form.create({ name: 'comment' })(SubmitComment);
-// export default WrappedComment;
 
 function mapStateToProps(state) {
   const { author, content, time } = state.comment;

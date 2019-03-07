@@ -60,7 +60,7 @@ router.post('/addComment', (req, res) => {
     });
 });
 
-router.get('/getCommentList', (req, res) => {
+router.get('/getCommentsList', (req, res) => {
   const searchCondition = req.query;
   Comment.find(searchCondition, '_id content time userId')
     .then((result) => {
