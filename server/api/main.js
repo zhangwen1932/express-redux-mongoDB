@@ -6,8 +6,6 @@ import { responseClient } from '../util';
 
 const router = Express.Router();
 
-// router.use('/comment', require('./comment'));
-
 router.use('/comment', require('./comment'));
 
 router.get('/getIntro', (req, res) => {
