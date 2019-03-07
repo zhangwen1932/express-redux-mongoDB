@@ -61,30 +61,23 @@ router.post('/addComment', (req, res) => {
 });
 
 router.get('/getCommentList', (req, res) => {
-  // const { articleId } = req.query;
-  // console.log('articleId', articleId);
   const searchCondition = req.query;
   Comment.find(searchCondition, '_id content time userId')
     .then((result) => {
-      console.log(result);
       if (result && result.length > 0) {
         const userIds = result.map(item => item.userId);
-        console.log(userIds);
         User.find({ _id: userIds }).then((rawUsers) => {
           const users = {};
           rawUsers.forEach((r) => {
-            users[r._id.toString()] = r;
+            console.log('r._id', r._id);
+            users[r._id] = r;
           });
-          console.log(users);
-          const data = result.map((r) => {
-            console.log(r.userId);
-            return {
-              id: r._id,
-              nickname: users[r.userId] && users[r.userId].nickname,
-              content: r.content,
-              time: r.time,
-            };
-          });
+          const data = result.map(r => ({
+            id: r._id,
+            nickname: users[r.userId] && users[r.userId].nickname,
+            content: r.content,
+            time: r.time,
+          }));
           responseClient(res, 200, 0, 'success', data);
         });
       } else {
