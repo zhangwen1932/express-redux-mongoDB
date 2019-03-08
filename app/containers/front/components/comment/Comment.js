@@ -23,7 +23,6 @@ class SubmitComment extends Component {
         data.comments = values.comments;
         data.thistime = thistime;
         data.id = id;
-        console.log('data', data);
         addComment(data);
       }
     });

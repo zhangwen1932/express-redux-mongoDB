@@ -13,6 +13,7 @@ class CommentsList extends Component {
 
   render() {
     const { commentsList } = this.props;
+    console.log('commentsList', commentsList);
     return (
       <div>
         {(commentsList.length > 0)
@@ -23,7 +24,7 @@ class CommentsList extends Component {
               }
             </div>
           )
-          : <h1>暂无评论</h1>
+          : <h4>暂无评论</h4>
         }
       </div>
     );

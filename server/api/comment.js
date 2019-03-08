@@ -81,7 +81,7 @@ router.get('/getCommentsList', (req, res) => {
           responseClient(res, 200, 0, 'success', data);
         });
       } else {
-        responseClient(res, 200, 0, 'success', '暂无评论');
+        responseClient(res, 200, 1, 'success');
       }
     }).cancel((err) => {
       console.log('err', err);
