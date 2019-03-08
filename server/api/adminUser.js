@@ -123,7 +123,6 @@ router.get('/authorInfo', (req, res) => {
 
 // 用户验证
 router.get('/userInfo', (req, res) => {
-  console.log('req.session', req.session);
   if (req.session.userInfo) {
     responseClient(res, 200, 0, '', req.session.userInfo);
   } else {
