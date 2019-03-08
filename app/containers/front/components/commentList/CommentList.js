@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Comment from './Comment';
+import CommentCell from './CommentCell';
 import { actions as CommentActions } from '../../../../reducers/articleComment';
 
 class CommentsList extends Component {
@@ -13,9 +13,19 @@ class CommentsList extends Component {
 
   render() {
     const { commentsList } = this.props;
-    console.log('commentsList', commentsList);
     return (
-      <h1>hello world</h1>
+      <div>
+        {(commentsList.length > 0)
+          ? (
+            <div>
+              {
+              commentsList.map(item => <CommentCell item={item} key={item.id} />)
+              }
+            </div>
+          )
+          : <h1>暂无评论</h1>
+        }
+      </div>
     );
   }
 }
