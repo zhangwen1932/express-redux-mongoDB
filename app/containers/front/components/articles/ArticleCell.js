@@ -58,7 +58,7 @@ class ArticleCell extends Component {
             </div>
             |
             <div className={style.commentButton}>
-              <IconText type="message" text="2" />
+              <IconText type="message" text={item.commentsCount} />
             </div>
           </div>
         </div>

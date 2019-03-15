@@ -10,3 +10,4 @@
 点赞: '/api/addLike'
 增加评论: 'api/comment/addComment'
 拉取评论: '/api/comment/getCommentsList'
+获取评论总数: '/api/comment/getCommentsTotal'
