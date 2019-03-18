@@ -1,4 +1,5 @@
 import Express from 'express';
+import Article from '../../models/article';
 import Comment from '../../models/comment';
 import User from '../../models/user';
 import { responseClient } from '../util';
@@ -28,33 +29,41 @@ router.post('/addComment', (req, res) => {
           }).catch((err) => {
             console.log(err);
           });
-        return;
-      }
-      const user = new User({
-        nickname,
-        email,
-      });
-      user.save()
-        .then((saveUser) => {
-          const comment = new Comment({
-            articleId: id,
-            content: comments,
-            time: thistime,
-            userId: saveUser._id,
-          });
-          comment.save()
-            .then(() => {
-              const data = {};
-              data.content = comment.content;
-              data.time = comment.time;
-              data.author = nickname;
-            }).catch((err) => {
-              console.log(err);
-            });
-        }).catch((err) => {
-          console.log(err);
+      } else {
+        const user = new User({
+          nickname,
+          email,
         });
-      responseClient(res, 200, 0, 'success');
+        user.save()
+          .then((saveUser) => {
+            const comment = new Comment({
+              articleId: id,
+              content: comments,
+              time: thistime,
+              userId: saveUser._id,
+            });
+            comment.save()
+              .then(() => {
+                const data = {};
+                data.content = comment.content;
+                data.time = comment.time;
+                data.author = nickname;
+              }).catch((err) => {
+                console.log(err);
+              });
+          }).catch((err) => {
+            console.log(err);
+          });
+      }
+      Article.findOne({ _id: id })
+        .then((data) => {
+          let newCounts = data.commentsCount;
+          newCounts += 1;
+          Article.updateOne({ _id: id }, { commentsCount: newCounts })
+            .then(() => {
+              responseClient(res, 200, 0, '更新成功');
+            });
+        });
     }).catch((err) => {
       console.log('err', err);
     });
