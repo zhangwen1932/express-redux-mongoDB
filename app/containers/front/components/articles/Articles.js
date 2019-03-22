@@ -18,6 +18,7 @@ class Articles extends Component {
     articles.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
     const data = [];
     articles.forEach((item, index) => {
+      console.log(item);
       const article = {};
       article.key = index;
       article.id = item._id;
@@ -25,6 +26,7 @@ class Articles extends Component {
       article.content = item.content;
       article.time = item.time;
       article.likeCount = item.likeCount;
+      article.commentsCount = item.commentsCount;
       data.push(article);
     });
     return (

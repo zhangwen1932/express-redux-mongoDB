@@ -13,7 +13,6 @@ class CommentsList extends Component {
 
   render() {
     const { commentsList } = this.props;
-    console.log('commentsList', commentsList);
     return (
       <div>
         {(commentsList.length > 0)

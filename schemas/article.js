@@ -13,4 +13,5 @@ module.exports = new mongoose.Schema({
   tags: Array, // 标签
   isPublish: Boolean, // 是否发布
   likeCount: Number, // 点赞次数
+  commentsCount: Number, // 评论
 });
