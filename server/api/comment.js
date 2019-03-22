@@ -97,18 +97,4 @@ router.get('/getCommentsList', (req, res) => {
     });
 });
 
-
-// router.get('/getCommentsTotal', (req, res) => {
-//   const searchCondition = { isPublish: true };
-//   // const articles = [];
-//   // const commentCount = [];
-//   Article.find(searchCondition, '_id title content isPublish time likeCount commentsCount')
-//     .then((result) => {
-//       console.log('result', result);
-//       responseClient(res, 200, 1, 'success');
-//     }).cancel((err) => {
-//       console.log(err);
-//     });
-// });
-
 module.exports = router;

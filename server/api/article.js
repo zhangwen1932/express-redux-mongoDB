@@ -6,7 +6,7 @@ const router = Express.Router();
 
 router.post('/addArticle', (req, res) => {
   const {
-    title, content, isPublish, time, likeCount,
+    title, content, isPublish, time, likeCount, commentsCount,
   } = req.body;
   // 添加文章
   const article = new Article({
@@ -15,6 +15,7 @@ router.post('/addArticle', (req, res) => {
     isPublish,
     time,
     likeCount,
+    commentsCount,
   });
   article.save().then((data) => {
     responseClient(res, 200, 0, '发表文章成功', data);
@@ -34,7 +35,7 @@ router.get('/getArticles', (req, res) => {
   Article.countDocuments(searchCondition)
     .then((total) => {
       responseData.total = total;
-      Article.find(searchCondition, '_id title content isPublish time likeCount')
+      Article.find(searchCondition, '_id title content isPublish time likeCount commentsCount')
         .then((result) => {
           responseData.list = result;
           responseClient(res, 200, 0, 'success', responseData);
@@ -48,7 +49,7 @@ router.get('/getArticles', (req, res) => {
 
 router.get('/getArticlesDetail', (req, res) => {
   const { id } = req.query;
-  Article.findOne({ _id: id }, '_id title content isPublish time likeCount')
+  Article.findOne({ _id: id }, '_id title content isPublish time likeCount commentsCount')
     .then((result) => {
       responseClient(res, 200, 0, 'success', result);
     }).cancel((err) => {
