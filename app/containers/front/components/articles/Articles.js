@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import { List, Icon } from 'antd';
 import { List } from 'antd';
 
 import { actions as FrontActions } from '../../../../reducers/front';
@@ -18,7 +17,6 @@ class Articles extends Component {
     articles.sort((a, b) => new Date(b.time).getTime() - new Date(a.time).getTime());
     const data = [];
     articles.forEach((item, index) => {
-      console.log(item);
       const article = {};
       article.key = index;
       article.id = item._id;
