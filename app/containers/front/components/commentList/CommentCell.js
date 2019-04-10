@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from 'react';
+// import {
+//   Comment, Tooltip, Avatar, Divider,
+// } from 'antd';
+import dateFormat from 'dateformat';
 import {
   Comment, Tooltip, Avatar, Divider,
-} from 'antd';
-import dateFormat from 'dateformat';
+} from '../../../../lib/antd';
+
 
 export default class CommentCell extends Component {
   render() {

@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const config = require('./config/config');
 
@@ -20,6 +21,7 @@ module.exports = {
     new OpenBrowserPlugin({
       url: `http://${config.host}:${config.port}`,
     }),
+    new BundleAnalyzerPlugin(),
   ],
   module: {
     rules: [

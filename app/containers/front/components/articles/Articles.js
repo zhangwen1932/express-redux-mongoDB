@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { List } from 'antd';
+// import { List } from 'antd';
 
+import { List } from '../../../../lib/antd';
 import { actions as FrontActions } from '../../../../reducers/front';
 import ArticleCell from './ArticleCell';
 

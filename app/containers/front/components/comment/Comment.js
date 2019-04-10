@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+// import {
+//   Form, Button, Input, Row, Col,
+// } from 'antd';
 import {
   Form, Button, Input, Row, Col,
-} from 'antd';
+} from '../../../../lib/antd';
 import { actions as CommentActions } from '../../../../reducers/articleComment';
 
 const { TextArea } = Input;

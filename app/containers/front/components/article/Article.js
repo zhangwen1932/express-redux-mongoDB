@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+// import {
+//   Breadcrumb, Icon, Divider, Card,
+// } from 'antd';
+
 import {
   Breadcrumb, Icon, Divider, Card,
-} from 'antd';
-
+} from '../../../../lib/antd';
 import Comment from '../comment/Comment';
 import CommentList from '../commentList/CommentList';
 import { actions as Frontactions } from '../../../../reducers/articleDetail';

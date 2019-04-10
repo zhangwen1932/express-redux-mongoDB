@@ -5,9 +5,8 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import {
-  Card,
-} from 'antd';
+// import { Card } from 'antd';
+import { Card } from '../../../../lib/antd';
 import { actions as FrontActions } from '../../../../reducers/front';
 import Articles from '../articles/Articles';
 import Projects from '../projects/Projects';
