@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const config = require('./config/config');
 
@@ -14,6 +15,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new ProgressBarPlugin(),
     new CleanWebpackPlugin(['public']),
+    new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       title: 'test',
     }),
