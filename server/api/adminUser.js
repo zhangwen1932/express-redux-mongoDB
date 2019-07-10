@@ -98,6 +98,20 @@ router.post('/updateUserInfor', (req, res) => {
   });
 });
 
+router.post('/updateUserAvatar', (req, res) => {
+  const avatar = req.body.avatarAddress;
+  User.update({ _id: req.session.userInfo.userId }, {
+    avatar,
+  }).then(() => {
+    const data = {};
+    data.avatar = avatar;
+    responseClient(res, 200, 0, '更新成功', data);
+  }).cancel((err) => {
+    console.log(err);
+    responseClient(res, 200, 1, 'fail');
+  });
+});
+
 router.get('/authorInfo', (req, res) => {
   if (req.session.userInfo) {
     const _id = req.session.userInfo.userId;

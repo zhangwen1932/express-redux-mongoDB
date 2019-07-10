@@ -10,6 +10,8 @@ export const actionsTypes = {
   GET_AUTHOR: 'GET_AUTHOR',
   RESPONSE_GET_AUTHOR: 'RESPONSE_GET_AUTHOR',
   UPDATE_INFO: 'UPDATE_INFO',
+  UPDATE_AVATAR: 'UPDATE_AVATAR',
+  RESPONSE_UPDATE_AVATAR: 'RESPONSE_UPDATE_AVATAR',
 };
 
 export const actions = {
@@ -18,6 +20,10 @@ export const actions = {
   }),
   updateInfo: values => ({
     type: actionsTypes.UPDATE_INFO,
+    values,
+  }),
+  updateAvatar: values => ({
+    type: actionsTypes.UPDATE_AVATAR,
     values,
   }),
 };
@@ -34,6 +40,13 @@ export function reducer(state = initialState, action) {
         occupation: action.data.occupation,
         company: action.data.company,
       };
+    case actionsTypes.RESPONSE_UPDATE_AVATAR: {
+      console.log('action', action);
+      return {
+        ...state,
+        avatar: action.data.avatar,
+      };
+    }
     default:
       return state;
   }

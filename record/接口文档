@@ -11,3 +11,4 @@
 增加评论: 'api/comment/addComment'
 拉取评论: '/api/comment/getCommentsList'
 获取评论总数: '/api/comment/getCommentsTotal'
+更新头像地址: 'api/admin/user/updateUserAvatar'

@@ -27,3 +27,9 @@
   width: 144px;
   text-align: center;
 }
+.upload_avatar{
+  width: 448px;
+}
+.upload_btn{
+  margin: 15px 0;
+}
