@@ -1,35 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  Form, Input, Upload, Button,
+  Form, Input, Button,
 } from 'antd';
 import { actions as UserActions } from '../../../../reducers/adminSetting';
+import AvatarElement from './avatarElement';
 import style from './style.css';
 
 const FormItem = Form.Item;
-
-// 头像组件 方便以后独立，增加裁剪之类的功能
-const AvatarView = (props) => {
-  const { avatar } = props;
-  return (
-    <Fragment>
-      <div className={style.avatar_title}>
-      头像
-      </div>
-      <div className={style.avatar}>
-        <img src={avatar} alt="avatar" />
-      </div>
-      <Upload fileList={[]}>
-        <div className={style.button_view}>
-          <Button icon="upload">
-          更换头像
-          </Button>
-        </div>
-      </Upload>
-    </Fragment>
-  );
-};
 
 class Account extends Component {
   componentDidMount() {
@@ -128,7 +107,7 @@ class Account extends Component {
             </Form>
           </div>
           <div className={style.right}>
-            <AvatarView avatar={avatar} />
+            <AvatarElement avatar={avatar} />
           </div>
         </div>
       </div>

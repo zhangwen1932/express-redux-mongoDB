@@ -2,7 +2,7 @@ import { fork } from 'redux-saga/effects';
 import { loginFlow, userAuth } from './adminSaga';
 import { addArticleFlow, getArticleListFlow } from './adminArticleSaga';
 import { getArticleFlow } from './articleSaga';
-import { getAuthorFlow, updateInfoFlow } from './adminSettingSaga';
+import { getAuthorFlow, updateInfoFlow, updataAvatarFlow } from './adminSettingSaga';
 import { getAutorInfoFlow, getAutorArticlesFlow, addLikeFlow } from './frontSaga';
 import { addCommentFlow, getCommentsListFlow } from './articleCommentSaga';
 
@@ -19,4 +19,5 @@ export default function* rootSaga() {
   yield fork(addLikeFlow);
   yield fork(addCommentFlow);
   yield fork(getCommentsListFlow);
+  yield fork(updataAvatarFlow);
 }

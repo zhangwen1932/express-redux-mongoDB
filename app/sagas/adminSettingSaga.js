@@ -53,3 +53,31 @@ export function* updateInfoFlow() {
     yield put({ type: IndexActionTypes.CLEAR_MESSAGE, msgCOntent: '', msgType: 1 });
   }
 }
+
+export function* updataAvatar(values) {
+  console.log('values', values);
+  const avatarAddress = values;
+  console.log('avatarAddress', avatarAddress);
+  yield put({ type: IndexActionTypes.FETCH_START });
+  try {
+    return yield call(post, 'admin/user/updateUserAvatar', { avatarAddress });
+  } catch (err) {
+    return yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '网络请求错误', msgType: 0 });
+  } finally {
+    yield put({ type: IndexActionTypes.FETCH_END });
+  }
+}
+
+export function* updataAvatarFlow() {
+  while (true) {
+    const request = yield take(AdminSettingTypes.UPDATE_AVATAR);
+    console.log('request', request);
+    const res = yield call(updataAvatar, request.values);
+    if (res && res.code === 0) {
+      yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '更新成功', msgType: 0 });
+    } else {
+      yield put({ type: IndexActionTypes.SET_MESSAGE, msgContent: '更新失败', msgType: 1 });
+    }
+    yield put({ type: IndexActionTypes.CLEAR_MESSAGE, msgCOntent: '', msgType: 1 });
+  }
+}
