@@ -99,7 +99,6 @@ router.post('/updateUserInfor', (req, res) => {
 });
 
 router.post('/updateUserAvatar', (req, res) => {
-  console.log('req.body', req.body);
   const avatar = req.body.avatarAddress;
   User.update({ _id: req.session.userInfo.userId }, {
     avatar,

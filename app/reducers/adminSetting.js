@@ -40,10 +40,13 @@ export function reducer(state = initialState, action) {
         occupation: action.data.occupation,
         company: action.data.company,
       };
-    case actionsTypes.RESPONSE_UPDATE_AVATAR:
+    case actionsTypes.RESPONSE_UPDATE_AVATAR: {
+      console.log('action', action);
       return {
+        ...state,
         avatar: action.data.avatar,
       };
+    }
     default:
       return state;
   }
